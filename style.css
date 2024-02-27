@@ -1,0 +1,23 @@
+.text-bg-primary {
+    color: #fff;
+    background-color: #007bff;
+}
+
+.header-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.header {
+    background-color: #007bff; /* Couleur de fond du header */
+    color: #fff; /* Couleur du texte */
+    padding: 10px 0; /* Espacement intérieur du header */
+    text-align: center; /* Centrage du texte */
+}
+
+.card-img-top {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+}
