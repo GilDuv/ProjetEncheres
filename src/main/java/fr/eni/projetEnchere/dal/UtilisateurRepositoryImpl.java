@@ -9,7 +9,10 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import fr.eni.projetEnchere.bo.Utilisateur;
@@ -45,21 +48,43 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 				utilisateur.setMotDePasse(rs.getString("motDePasse"));
 				utilisateur.setCredit(rs.getInt("credit"));
 				utilisateur.setAdministrateur(rs.getInt("administrateur"));
-				
 				return utilisateur;
 			}
 		};
-		
 		return jdbcTemplate.query(sql, rowMapper);
 	}
 
+	
+	
 	@Override
 	public Optional<Utilisateur> findProfilById(Integer id) {
 		
 			String sql="SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur where no_utilisateur = ?";
 			Optional<Utilisateur> optUtilisateur =null;
+			
+			RowMapper<Utilisateur> rowMapper= new RowMapper<Utilisateur>() {
+				
+				@Override
+				public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
+					Utilisateur utilisateur = new Utilisateur();
+					utilisateur.setNoUtilisateur(rs.getInt("noUtilisateur"));
+					utilisateur.setPseudo(rs.getString("pseudo"));
+					utilisateur.setNom(rs.getString("nom"));
+					utilisateur.setPrenom(rs.getString("prenom"));
+					utilisateur.setTelephone(rs.getString("telephone"));
+					utilisateur.setRue(rs.getString("rue"));
+					utilisateur.setCodePostal(rs.getString("CodePostal"));
+					utilisateur.setVille(rs.getString("ville"));
+					utilisateur.setMotDePasse(rs.getString("motDePasse"));
+					utilisateur.setCredit(rs.getInt("credit"));
+					utilisateur.setAdministrateur(rs.getInt("administrateur"));
+					return utilisateur;
+				}
+			};
+			
+			
 			try {
-				Utilisateur utilisateur = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Utilisateur>(Utilisateur.class),id);
+				Utilisateur utilisateur = jdbcTemplate.queryForObject(sql, rowMapper,id);
 				optUtilisateur = Optional.of(utilisateur);
 			} catch (EmptyResultDataAccessException exc) {
 				optUtilisateur = Optional.empty();
@@ -67,12 +92,35 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 		return optUtilisateur;
 	}
 
+	
+	
 	@Override
 	public Utilisateur creerProfil(Utilisateur utilisateur) {
-		String sql="insert into utilisateurs";
-		return null;
+		String sql="insert into utilisateurs (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur) values (:pseudo,:nom,:prenom,:email,:telephone,:rue,:code_postal,:ville,mot_de_passe ,:credit,:administrateur";
+		
+		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+		parameterSource.addValue("pseudo", utilisateur.getPseudo());
+		parameterSource.addValue("nom", utilisateur.getNom());
+		parameterSource.addValue("prenom", utilisateur.getPrenom());
+		parameterSource.addValue("email", utilisateur.getEmail());
+		parameterSource.addValue("telephone", utilisateur.getTelephone());
+		parameterSource.addValue("rue", utilisateur.getRue());
+		parameterSource.addValue("CodePostal", utilisateur.getCodePostal());
+		parameterSource.addValue("ville", utilisateur.getVille());
+		parameterSource.addValue("motDePasse", utilisateur.getMotDePasse());
+		parameterSource.addValue("credit", utilisateur.getCredit());
+		parameterSource.addValue("administrateur", utilisateur.getAdministrateur());
+		
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		
+		namedParameterJdbcTemplate.update(sql, parameterSource, keyHolder, new String[] {"noUtilisateur"});
+		utilisateur.setNoUtilisateur(keyHolder.getKey().intValue());
+		
+		return utilisateur;
 	}
 
+	
+	
 	@Override
 	public Utilisateur modifierProfil(Utilisateur utilisateur) {
 		// TODO Auto-generated method stub
