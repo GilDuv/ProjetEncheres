@@ -16,7 +16,7 @@ public class Utilisateur {
 	private String ville;
 	private String motDePasse;
 	private Integer credit;
-	private int administrateur;
+	private boolean administrateur;
 	
 	List<Article> articlesVendus;
 	List<Article> articlesAchetés;
@@ -28,7 +28,7 @@ public class Utilisateur {
 	
 	
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, Integer credit, int administrateur,
+			String codePostal, String ville, String motDePasse, Integer credit, boolean administrateur,
 			List<Article> ventes, List<Article> achats,List<Enchere> encheres) {
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -49,7 +49,7 @@ public class Utilisateur {
 
 
 	public Utilisateur(Integer noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse, Integer credit, int administrateur,
+			String rue, String codePostal, String ville, String motDePasse, Integer credit, boolean administrateur,
 			List<Article> ventes, List<Article> achats,List<Enchere> encheres) {
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
@@ -135,12 +135,7 @@ public class Utilisateur {
 	public void setCredit(Integer credit) {
 		this.credit = credit;
 	}
-	public int getAdministrateur() {
-		return administrateur;
-	}
-	public void setAdministrateur(int administrateur) {
-		this.administrateur = administrateur;
-	}
+	
 	public List<Article> getVentes() {
 		return articlesVendus;
 	}
@@ -164,6 +159,18 @@ public class Utilisateur {
 
 	public void setEncheres(List<Enchere> encheres) {
 		this.encheres = encheres;
+	}
+
+
+
+	public boolean isAdministrateur() {
+		return administrateur;
+	}
+
+
+
+	public void setAdministrateur(boolean administrateur) {
+		this.administrateur = administrateur;
 	}
 
 

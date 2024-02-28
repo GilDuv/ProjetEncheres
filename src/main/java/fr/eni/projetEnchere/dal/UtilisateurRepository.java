@@ -9,7 +9,7 @@ public interface UtilisateurRepository {
 
 	public List<Utilisateur>  findAllProfil();
 	
-	public Optional<Utilisateur> findProfilById(Integer id);
+	public Optional<Utilisateur> findProfilByPseudo(String pseudo);
 	
 	public Utilisateur creerProfil(Utilisateur utilisateur);
 	

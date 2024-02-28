@@ -47,7 +47,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 				utilisateur.setVille(rs.getString("ville"));
 				utilisateur.setMotDePasse(rs.getString("motDePasse"));
 				utilisateur.setCredit(rs.getInt("credit"));
-				utilisateur.setAdministrateur(rs.getInt("administrateur"));
+				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 				return utilisateur;
 			}
 		};
@@ -57,7 +57,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 	
 	
 	@Override
-	public Optional<Utilisateur> findProfilById(Integer id) {
+	public Optional<Utilisateur> findProfilByPseudo(String pseudo) {
 		
 			String sql="SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur where no_utilisateur = ?";
 			Optional<Utilisateur> optUtilisateur =null;
@@ -77,14 +77,14 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 					utilisateur.setVille(rs.getString("ville"));
 					utilisateur.setMotDePasse(rs.getString("motDePasse"));
 					utilisateur.setCredit(rs.getInt("credit"));
-					utilisateur.setAdministrateur(rs.getInt("administrateur"));
+					utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 					return utilisateur;
 				}
 			};
 			
 			
 			try {
-				Utilisateur utilisateur = jdbcTemplate.queryForObject(sql, rowMapper,id);
+				Utilisateur utilisateur = jdbcTemplate.queryForObject(sql, rowMapper,pseudo);
 				optUtilisateur = Optional.of(utilisateur);
 			} catch (EmptyResultDataAccessException exc) {
 				optUtilisateur = Optional.empty();
@@ -109,7 +109,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 		parameterSource.addValue("ville", utilisateur.getVille());
 		parameterSource.addValue("motDePasse", utilisateur.getMotDePasse());
 		parameterSource.addValue("credit", utilisateur.getCredit());
-		parameterSource.addValue("administrateur", utilisateur.getAdministrateur());
+		parameterSource.addValue("administrateur", utilisateur.isAdministrateur());
 		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
