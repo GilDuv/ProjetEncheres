@@ -38,15 +38,15 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 			@Override
 			public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Utilisateur utilisateur = new Utilisateur();
-				utilisateur.setNoUtilisateur(rs.getInt("noUtilisateur"));
+				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 				utilisateur.setPseudo(rs.getString("pseudo"));
 				utilisateur.setNom(rs.getString("nom"));
 				utilisateur.setPrenom(rs.getString("prenom"));
 				utilisateur.setTelephone(rs.getString("telephone"));
 				utilisateur.setRue(rs.getString("rue"));
-				utilisateur.setCodePostal(rs.getString("CodePostal"));
+				utilisateur.setCodePostal(rs.getString("code_postal"));
 				utilisateur.setVille(rs.getString("ville"));
-				utilisateur.setMotDePasse(rs.getString("motDePasse"));
+				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 				utilisateur.setCredit(rs.getInt("credit"));
 				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 				return utilisateur;
@@ -60,7 +60,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 	@Override
 	public Optional<Utilisateur> findProfilByPseudo(String pseudo) {
 		
-			String sql="SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur where no_utilisateur = ?";
+			String sql="SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur FROM UTILISATEURS where pseudo = ?";
 			Optional<Utilisateur> optUtilisateur =null;
 			
 			RowMapper<Utilisateur> rowMapper= new RowMapper<Utilisateur>() {
@@ -68,15 +68,15 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 				@Override
 				public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
 					Utilisateur utilisateur = new Utilisateur();
-					utilisateur.setNoUtilisateur(rs.getInt("noUtilisateur"));
+					utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 					utilisateur.setPseudo(rs.getString("pseudo"));
 					utilisateur.setNom(rs.getString("nom"));
 					utilisateur.setPrenom(rs.getString("prenom"));
 					utilisateur.setTelephone(rs.getString("telephone"));
 					utilisateur.setRue(rs.getString("rue"));
-					utilisateur.setCodePostal(rs.getString("CodePostal"));
+					utilisateur.setCodePostal(rs.getString("code_postal"));
 					utilisateur.setVille(rs.getString("ville"));
-					utilisateur.setMotDePasse(rs.getString("motDePasse"));
+					utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 					utilisateur.setCredit(rs.getInt("credit"));
 					utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
 					return utilisateur;
@@ -85,7 +85,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 			
 			
 			try {
-				Utilisateur utilisateur = jdbcTemplate.queryForObject(sql, rowMapper,pseudo);
+				Utilisateur utilisateur = jdbcTemplate.queryForObject(sql, rowMapper,new Object[]{pseudo});
 				optUtilisateur = Optional.of(utilisateur);
 			} catch (EmptyResultDataAccessException exc) {
 				optUtilisateur = Optional.empty();
@@ -97,7 +97,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 	
 	@Override
 	public Utilisateur creerProfil(Utilisateur utilisateur) {
-		String sql="insert into utilisateurs (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur) values (:pseudo,:nom,:prenom,:email,:telephone,:rue,:code_postal,:ville,mot_de_passe ,:credit,:administrateur";
+		String sql="insert into utilisateurs (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur) values (:pseudo,:nom,:prenom,:email,:telephone,:rue,:code_postal,:ville,:mot_de_passe ,:credit,:administrateur)";
 		
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		parameterSource.addValue("pseudo", utilisateur.getPseudo());
@@ -106,15 +106,15 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 		parameterSource.addValue("email", utilisateur.getEmail());
 		parameterSource.addValue("telephone", utilisateur.getTelephone());
 		parameterSource.addValue("rue", utilisateur.getRue());
-		parameterSource.addValue("CodePostal", utilisateur.getCodePostal());
+		parameterSource.addValue("code_postal", utilisateur.getCodePostal());
 		parameterSource.addValue("ville", utilisateur.getVille());
-		parameterSource.addValue("motDePasse", utilisateur.getMotDePasse());
+		parameterSource.addValue("mot_de_passe", utilisateur.getMotDePasse());
 		parameterSource.addValue("credit", utilisateur.getCredit());
 		parameterSource.addValue("administrateur", utilisateur.isAdministrateur());
 		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
-		namedParameterJdbcTemplate.update(sql, parameterSource, keyHolder, new String[] {"noUtilisateur"});
+		namedParameterJdbcTemplate.update(sql, parameterSource, keyHolder, new String[] {"no_utilisateur"});
 		utilisateur.setNoUtilisateur(keyHolder.getKey().intValue());
 		
 		return utilisateur;
@@ -135,11 +135,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 		
 	}
 
-	@Override
-	public Utilisateur findProfilByPseudo(String pseudo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 
 	@Override
