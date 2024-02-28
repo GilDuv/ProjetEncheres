@@ -15,6 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import fr.eni.projetEnchere.bo.Article;
 import fr.eni.projetEnchere.bo.Utilisateur;
 
 @Repository
@@ -123,7 +124,8 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 	
 	@Override
 	public Utilisateur modifierProfil(Utilisateur utilisateur) {
-		// TODO Auto-generated method stub
+		String sql = "update utilisateurs set nom=?, prenom=?, email=?, telephone=?, rue=?, CodePostal=?, ville=?, motDePasse=?, credit=?, administrateur=?";
+		
 		return null;
 	}
 
@@ -131,6 +133,25 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 	public void supprimerProfil(Integer idUtilisateur) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Utilisateur findProfilByPseudo(String pseudo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<String> getAllPseudos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Article> getAllArticlesVendus(Utilisateur utilisateur) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
