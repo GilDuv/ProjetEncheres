@@ -11,10 +11,6 @@ public class AffichageControler {
 			return "index";
 		}
 	
-	@GetMapping("/connexion")
-	public String affichageConnexion() {
-		return "connexion";
-	}
 	
 	@GetMapping("/creation")
 	public String affichageCreationCompte() {
