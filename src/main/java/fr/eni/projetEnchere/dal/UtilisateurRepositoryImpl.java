@@ -96,7 +96,42 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 		return optUtilisateur;
 	}
 
-	
+	@Override
+	public Optional<Utilisateur> findProfilById(Integer idUtilisateur) {
+		String sql="SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur FROM UTILISATEURS where no_utilisateur = ?";
+
+
+		Optional<Utilisateur> optUtilisateur =null;
+		
+		RowMapper<Utilisateur> rowMapper= new RowMapper<Utilisateur>() {
+			
+			@Override
+			public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Utilisateur utilisateur = new Utilisateur();
+				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+				utilisateur.setPseudo(rs.getString("pseudo"));
+				utilisateur.setNom(rs.getString("nom"));
+				utilisateur.setPrenom(rs.getString("prenom"));
+				utilisateur.setTelephone(rs.getString("telephone"));
+				utilisateur.setRue(rs.getString("rue"));
+				utilisateur.setCodePostal(rs.getString("code_postal"));
+				utilisateur.setVille(rs.getString("ville"));
+				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
+				utilisateur.setCredit(rs.getInt("credit"));
+				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+				return utilisateur;
+			}
+		};
+		
+		
+		try {
+			Utilisateur utilisateur = jdbcTemplate.queryForObject(sql, rowMapper,idUtilisateur);
+			optUtilisateur = Optional.of(utilisateur);
+		} catch (EmptyResultDataAccessException exc) {
+			optUtilisateur = Optional.empty();
+		}
+	return optUtilisateur;
+	}
 	
 	@Override
 	public Utilisateur creerProfil(Utilisateur utilisateur) {
@@ -127,11 +162,12 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 	
 	@Override
 	public Utilisateur modifierProfil(Utilisateur utilisateur) {
-		String sql = "update utilisateurs set nom=?, prenom=?, email=?, "
-				+ "telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?,"
-				+ "credit=?,administrateur=? where pseudo=?";
+		String sql = "update utilisateurs set pseudo=?, nom=?, prenom=?, email=?, "
+				+ "telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?"
+				+" where no_utilisateur=?";
 		
 		int nbLignes = jdbcTemplate.update(sql,
+				utilisateur.getPseudo(),
 				utilisateur.getNom(),
 				utilisateur.getPrenom(),
 				utilisateur.getEmail(),
@@ -139,10 +175,8 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 				utilisateur.getRue(),
 				utilisateur.getCodePostal(),
 				utilisateur.getVille(),
-				utilisateur.getMotDePasse(),
-				utilisateur.getCredit(),
-				utilisateur.isAdministrateur(),
-				utilisateur.getPseudo());
+				utilisateur.getMotDePasse());
+				
 		if (nbLignes == 0) {
 			throw new UtilisateurNotFoundRuntimeException();
 		}
@@ -171,6 +205,8 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 
 	
