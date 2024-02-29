@@ -19,6 +19,10 @@ public class TrocencheresSecurity {
 //				.requestMatchers("/", "/films", "/css/*").permitAll()
 //				.requestMatchers("/creer").hasRole("MEMBRE")
 //				.requestMatchers("/adminGenres").hasRole("ADMINISTRATEUR")
+//				.requestMatchers("/").permitAll()
+//				.requestMatchers("/profilCreation").hasRole("Utilisateur")
+//				.requestMatchers("/").hasRole("Utilisateur")
+
 				.anyRequest().permitAll()
 			)
 			.formLogin((form) -> form

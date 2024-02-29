@@ -32,8 +32,8 @@
                         </div>
                         
                         <div sec:authorize="isAuthenticated()">
-							<li>
-					 			<form th:action="@{/logout}" method="post">
+							<li class="nav-item">
+					 			<form class="nav-item nav-link text-white" th:action="@{/logout}" method="post">
 	            					<input type="submit" value="Se déconnecter"/>
 	        					</form>
 							</li>

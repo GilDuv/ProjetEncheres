@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +8,7 @@
     <title>Connexion</title>
 </head>
 <body>
-	<div th:if="${param.error}">
-    Invalid username and password.
-    </div>
-    
-    <div th:if="${param.logout}">
-    You have been logged out.
-    </div>
-	
+
     <div class="container-fluid">
 <!-- Header -->
         <header>
@@ -23,26 +16,35 @@
         </header>
 
 <!-- Formulaire de connexion -->
+        
+        <div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+
     <form th:action="@{/connexion}" method="post">
         <div class="mb-3">
-            <label for="utilisateur" class="form-label" name="username">Identifiant : </label>
-            <input type="text" class="form-control" id="utilisateur" aria-describedby="emailHelp">
+            <label for="identifiant" class="form-label">Identifiant : </label>
+            <input type="text" class="form-control" id="identifiant" name="username" aria-describedby="emailHelp">
             <div id="emailHelp" class="form-text">Ne divulguer jamais votre identifiant.</div>
         </div>
 
         <div class="mb-3">
-            <label for="password" class="form-label" name="password">Mot de passe : </label>
-            <input type="password" class="form-control" id="password">
+            <label for="password1" class="form-label">Mot de passe : </label>
+            <input type="password" class="form-control" id="password1" name="password" >
         </div>
 
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="check">
             <label class="form-check-label" for="check">Se souvenir de moi</label>
         </div>
+
         <button type="submit" value="Sign In" class="btn btn-primary">Connexion</button>
         <a class="password-link" href="#">Mot de passe oublié</a>
         <button type="submit" class="btn btn-primary">Créer un compte</button>
-    </form">
+    </form>
 
     </div>
 

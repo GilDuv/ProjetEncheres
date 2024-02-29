@@ -14,10 +14,10 @@ import fr.eni.projetEnchere.dal.UtilisateurRepository;
 
 
 	@Component
-	public class TrocEncheresUserDetailService implements UserDetailsService {
+	public class TrocencheresUserDetailService implements UserDetailsService {
 		private UtilisateurRepository utilisateurRepository;
 		
-		public TrocEncheresUserDetailService(UtilisateurRepository utilisateurRepository) {
+		public TrocencheresUserDetailService(UtilisateurRepository utilisateurRepository) {
 			this.utilisateurRepository = utilisateurRepository;
 		}
 
@@ -47,5 +47,7 @@ import fr.eni.projetEnchere.dal.UtilisateurRepository;
 			
 			return user;
 		}
-	
+
+		
 }
+
