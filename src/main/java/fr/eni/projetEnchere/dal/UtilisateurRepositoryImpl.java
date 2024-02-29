@@ -42,6 +42,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 				utilisateur.setPseudo(rs.getString("pseudo"));
 				utilisateur.setNom(rs.getString("nom"));
 				utilisateur.setPrenom(rs.getString("prenom"));
+				utilisateur.setEmail(rs.getString("email"));
 				utilisateur.setTelephone(rs.getString("telephone"));
 				utilisateur.setRue(rs.getString("rue"));
 				utilisateur.setCodePostal(rs.getString("code_postal"));
@@ -61,7 +62,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 	public Optional<Utilisateur> findProfilByPseudo(String pseudo) {
 		
 
-			String sql="SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur FROM UTILISATEURS where pseudo = ?";
+			String sql="SELECT pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur FROM UTILISATEURS where pseudo = ?";
 
 
 			Optional<Utilisateur> optUtilisateur =null;
@@ -71,10 +72,10 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 				@Override
 				public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
 					Utilisateur utilisateur = new Utilisateur();
-					utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 					utilisateur.setPseudo(rs.getString("pseudo"));
 					utilisateur.setNom(rs.getString("nom"));
 					utilisateur.setPrenom(rs.getString("prenom"));
+					utilisateur.setEmail(rs.getString("email"));
 					utilisateur.setTelephone(rs.getString("telephone"));
 					utilisateur.setRue(rs.getString("rue"));
 					utilisateur.setCodePostal(rs.getString("code_postal"));
@@ -82,6 +83,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 					utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 					utilisateur.setCredit(rs.getInt("credit"));
 					utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+					utilisateur.setPseudo(rs.getString("pseudo"));
 					return utilisateur;
 				}
 			};
@@ -96,7 +98,6 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 		return optUtilisateur;
 	}
 
-	
 	
 	@Override
 	public Utilisateur creerProfil(Utilisateur utilisateur) {
@@ -127,9 +128,22 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 	
 	@Override
 	public Utilisateur modifierProfil(Utilisateur utilisateur) {
-		String sql = "update utilisateurs set nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?, credit=?, administrateur=? where pseudo=?";
+		String sql = "update utilisateurs set pseudo=?, nom=?, prenom=?, email=?, "
+				+ "telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?"
+				+" where pseudo=?";
 		
-		int nbLignes = jdbcTemplate.update(sql,utilisateur.getNom(),utilisateur.getPrenom(),utilisateur.getEmail(),utilisateur.getTelephone(),utilisateur.getRue(),utilisateur.getCodePostal(),utilisateur.getVille(),utilisateur.getMotDePasse(),utilisateur.getCredit(),utilisateur.isAdministrateur(),utilisateur.getPseudo());
+		int nbLignes = jdbcTemplate.update(sql,
+				utilisateur.getPseudo(),
+				utilisateur.getNom(),
+				utilisateur.getPrenom(),
+				utilisateur.getEmail(),
+				utilisateur.getTelephone(),
+				utilisateur.getRue(),
+				utilisateur.getCodePostal(),
+				utilisateur.getVille(),
+				utilisateur.getMotDePasse(),
+				utilisateur.getPseudo());
+
 		if (nbLignes == 0) {
 			throw new UtilisateurNotFoundRuntimeException();
 		}
@@ -158,6 +172,8 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 
 	
