@@ -16,13 +16,13 @@ public class TrocencheresSecurity {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			.authorizeHttpRequests((requests) -> requests				
-				.requestMatchers("/", "/films", "/css/*").permitAll()
-				.requestMatchers("/creer").hasRole("MEMBRE")
-				.requestMatchers("/adminGenres").hasRole("ADMINISTRATEUR")
-				.anyRequest().authenticated()
+//				.requestMatchers("/", "/films", "/css/*").permitAll()
+//				.requestMatchers("/creer").hasRole("MEMBRE")
+//				.requestMatchers("/adminGenres").hasRole("ADMINISTRATEUR")
+				.anyRequest().permitAll()
 			)
 			.formLogin((form) -> form
-				.loginPage("/login")
+				.loginPage("/connexion")
 				.permitAll()
 				.defaultSuccessUrl("/")
 			)
