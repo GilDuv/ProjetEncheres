@@ -13,8 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -89,6 +88,9 @@ public class UtilisateurApplicationTest {
 		Optional<Utilisateur> optUtilisateur = utilisateurRepository.findProfilByPseudo("bool");
 		assertTrue(optUtilisateur.isPresent());
 		System.out.println("UtilisateurApplicationTest.testmodifierProfil()");
+
+		assertEquals("Paris", optUtilisateur.get().getVille());
+
 		System.out.println(optUtilisateur);
 		
 	}

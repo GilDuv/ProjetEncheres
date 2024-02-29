@@ -12,6 +12,7 @@ public interface UtilisateurRepository {
 	
 	public Optional<Utilisateur> findProfilByPseudo(String pseudo);
 	
+
 	public Utilisateur creerProfil(Utilisateur utilisateur);
 	
 	public Utilisateur modifierProfil(Utilisateur utilisateur);

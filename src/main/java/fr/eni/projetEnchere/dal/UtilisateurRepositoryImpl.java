@@ -83,6 +83,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 					utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 					utilisateur.setCredit(rs.getInt("credit"));
 					utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+					utilisateur.setPseudo(rs.getString("pseudo"));
 					return utilisateur;
 				}
 			};
@@ -142,6 +143,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 				utilisateur.getVille(),
 				utilisateur.getMotDePasse(),
 				utilisateur.getPseudo());
+
 		if (nbLignes == 0) {
 			throw new UtilisateurNotFoundRuntimeException();
 		}
