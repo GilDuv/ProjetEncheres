@@ -11,6 +11,8 @@ public interface UtilisateurRepository {
 	public List<Utilisateur>  findAllProfil();
 	
 	public Optional<Utilisateur> findProfilByPseudo(String pseudo);
+	
+	public Optional<Utilisateur> findProfilById(Integer idUtilisateur);
 
 	public Utilisateur creerProfil(Utilisateur utilisateur);
 	
