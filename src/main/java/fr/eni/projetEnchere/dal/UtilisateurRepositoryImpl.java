@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import fr.eni.projetEnchere.bo.Article;
 import fr.eni.projetEnchere.bo.Utilisateur;
+import fr.eni.projetEnchere.exceptions.UtilisateurNotFoundRuntimeException;
 
 @Repository
 public class UtilisateurRepositoryImpl implements UtilisateurRepository{
@@ -124,15 +125,24 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 	
 	@Override
 	public Utilisateur modifierProfil(Utilisateur utilisateur) {
-		String sql = "update utilisateurs set nom=?, prenom=?, email=?, telephone=?, rue=?, CodePostal=?, ville=?, motDePasse=?, credit=?, administrateur=?";
+		String sql = "update utilisateurs set nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?, credit=?, administrateur=? where pseudo=?";
 		
-		return null;
+		int nbLignes = jdbcTemplate.update(sql,utilisateur.getNom(),utilisateur.getPrenom(),utilisateur.getEmail(),utilisateur.getTelephone(),utilisateur.getRue(),utilisateur.getCodePostal(),utilisateur.getVille(),utilisateur.getMotDePasse(),utilisateur.getCredit(),utilisateur.isAdministrateur(),utilisateur.getPseudo());
+		if (nbLignes == 0) {
+			throw new UtilisateurNotFoundRuntimeException();
+		}
+		return utilisateur;
 	}
+	
 
 	@Override
 	public void supprimerProfil(Integer idUtilisateur) {
-		// TODO Auto-generated method stub
-		
+
+		String sql = "delete from utilisateurs where no_utilisateur=?";
+		int nbLignes = jdbcTemplate.update(sql,idUtilisateur);
+		if (nbLignes == 0) {
+			throw new UtilisateurNotFoundRuntimeException();
+		}
 	}
 
 
