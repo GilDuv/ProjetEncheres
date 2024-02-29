@@ -47,4 +47,6 @@ import fr.eni.projetEnchere.dal.UtilisateurRepository;
 			
 			return user;
 		}
+
 }
+
