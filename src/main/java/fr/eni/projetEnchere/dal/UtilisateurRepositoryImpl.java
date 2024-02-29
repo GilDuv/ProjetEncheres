@@ -135,11 +135,6 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 		
 	}
 
-	@Override
-	public Utilisateur findProfilByPseudo(String pseudo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 	@Override
