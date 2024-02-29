@@ -41,11 +41,19 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		
 		throw new UtilisateurNotFoundRuntimeException(); 
 	}
-	//salut
+
 	public void creerUtilisateur(Utilisateur utilisateur) {
 		//Sauvegarde de l'utilisateur
 		utilisateur.setNoUtilisateur(indexUtilisateur++);
 		lstUtilisateur.add(utilisateur);
+	}
+	
+	public void supprimerUtilisateur(Integer idUtilisateur) {
+		utilisateurRepository.supprimerProfil(idUtilisateur);
+	}
+	
+	public void modifierUtilisateur(Utilisateur utilisateur) {
+		utilisateurRepository.modifierProfil(utilisateur);
 	}
 	
 }
