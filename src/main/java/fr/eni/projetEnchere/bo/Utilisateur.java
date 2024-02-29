@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Utilisateur {
 
-	private Integer noUtilisateur;
+	private Integer noUtilisateur = 1;
 	private String pseudo;
 	private String nom;
 	private String prenom;
@@ -37,7 +37,7 @@ public class Utilisateur {
 		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
-		CodePostal = codePostal;
+		this.codePostal = codePostal;
 		this.ville = ville;
 		this.motDePasse = motDePasse;
 	}

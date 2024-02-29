@@ -16,6 +16,7 @@ import fr.eni.projetEnchere.bo.Utilisateur;
 @Controller
 public class ProfilController {
 	
+<<<<<<< HEAD
 	private UtilisateurService utilisateurService;
 	
 	public ProfilController(UtilisateurService utilisateurService) {
@@ -37,5 +38,8 @@ public class ProfilController {
 		
 	}
 
+=======
+	
+>>>>>>> amelia
 
 }
