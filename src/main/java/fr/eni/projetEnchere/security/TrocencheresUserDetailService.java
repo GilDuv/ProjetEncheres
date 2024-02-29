@@ -12,13 +12,12 @@ import org.springframework.stereotype.Component;
 import fr.eni.projetEnchere.bo.Utilisateur;
 import fr.eni.projetEnchere.dal.UtilisateurRepository;
 
-public class TrocencheresUserDetailService {
 
 	@Component
-	public class FilmothequeUserDetailService implements UserDetailsService {
+	public class TrocencheresUserDetailService implements UserDetailsService {
 		private UtilisateurRepository utilisateurRepository;
 		
-		public FilmothequeUserDetailService(UtilisateurRepository utilisateurRepository) {
+		public TrocencheresUserDetailService(UtilisateurRepository utilisateurRepository) {
 			this.utilisateurRepository = utilisateurRepository;
 		}
 
@@ -49,4 +48,4 @@ public class TrocencheresUserDetailService {
 			return user;
 		}
 	}
-}
+

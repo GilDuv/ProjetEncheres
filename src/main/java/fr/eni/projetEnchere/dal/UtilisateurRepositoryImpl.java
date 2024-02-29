@@ -145,9 +145,6 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 		}
 	}
 
-
-
-
 	@Override
 	public List<String> getAllPseudos() {
 		// TODO Auto-generated method stub
