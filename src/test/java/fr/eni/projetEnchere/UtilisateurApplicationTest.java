@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,13 @@ public class UtilisateurApplicationTest {
 	@Autowired
 	private UtilisateurRepositoryImpl utilisateurRepository;
 	
+	@BeforeEach
+	void initTest() {
+		jdbcTemplate.execute(" DELETE FROM UTILISATEURS");
+		jdbcTemplate.execute("INSERT INTO UTILISATEURS (no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur)VALUES (1,'bool','Dupont','Bernard','beber@live.fr','0652764587','18 rue du soleil','44000','nantes','{bcrypt}$2a$10$NGjU/wi4Sp3nzZsNL.ZEgOkLFsMXnRsbBJzKZYyzPk4vEyH.2NYmW',0,true)");
+		jdbcTemplate.execute("INSERT INTO UTILISATEURS (no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur)VALUES (2,'Rintintin','Durant','David','tontondavid@live.fr','0652765648','18 rue du soleil levant','79000','niort','{bcrypt}$2a$10$NGjU/wi4Sp3nzZsNL.ZEgOkLFsMXnRsbBJzKZYyzPk4vEyH.2NYmW',0,false)");
+	}
+	
 	@Test
 	@DisplayName("Test findAllProfil")
 	void testFindAllUtilisateur() {
@@ -47,14 +55,14 @@ public class UtilisateurApplicationTest {
 		//on compare le pseudo test avec le pseudo présent dans sql
 		assertEquals("bool", optUtilisateur.get().getPseudo());
 		//on compare la liste avec la liste présente dans sql
-		assertEquals(new Utilisateur(1,"bool","Dupont","Bernard","beber@live.fr","0652764587","18 rue du soleil","44000","nantes","pa$$w0rd",0,true), optUtilisateur.get());
+		assertEquals(new Utilisateur(1,"bool","Dupont","Bernard","beber@live.fr","0652764587","18 rue du soleil","44000","nantes","{bcrypt}$2a$10$NGjU/wi4Sp3nzZsNL.ZEgOkLFsMXnRsbBJzKZYyzPk4vEyH.2NYmW",0,true), optUtilisateur.get());
 		System.out.println(optUtilisateur);
 	}
 	
 	@Test
 	@DisplayName("Test creerProfil")
 	void testCreerProfil() {
-		Utilisateur utilisateur=new Utilisateur(1, "boby", "Marley", "Bob", "boby@gmail.com", "0685749632", "39 rue de la paix", "44000", "Nantes", "Pa$$w0rd",0,false);
+		Utilisateur utilisateur=new Utilisateur("boby", "Marley", "Bob", "boby@gmail.com", "0685749632", "39 rue de la paix", "44000", "Nantes", "{bcrypt}$2a$10$NGjU/wi4Sp3nzZsNL.ZEgOkLFsMXnRsbBJzKZYyzPk4vEyH.2NYmW$$w0rd",0,false);
 		Utilisateur utilisateurResultat;
 		try {
 			utilisateurResultat = utilisateurRepository.creerProfil(utilisateur);
@@ -71,9 +79,9 @@ public class UtilisateurApplicationTest {
 	@Test
 	@DisplayName("Test modifierProfil")
 	void testmodifierProfil() throws UtilisateurNotFound{
-		Utilisateur utilisateur = new Utilisateur(1,"bool","Dupont","Bernard","beber@live.fr","0652764587","18 rue du soleil","44000","Paris","{bcrypt}$2a$10$NGjU/wi4Sp3nzZsNL.ZEgOkLFsMXnRsbBJzKZYyzPk4vEyH.2NYmW",0,true);
+		Utilisateur utilisateur = new Utilisateur("boby", "Marley", "Bob", "boby@gmail.com", "0685749632", "39 rue de la paix", "44000", "Paris", "{bcrypt}$2a$10$NGjU/wi4Sp3nzZsNL.ZEgOkLFsMXnRsbBJzKZYyzPk4vEyH.2NYmW$$w0rd",0,false);
 		utilisateurRepository.modifierProfil(utilisateur);
-		Optional<Utilisateur> optUtilisateur = utilisateurRepository.findProfilByPseudo("bool");
+		Optional<Utilisateur> optUtilisateur = utilisateurRepository.findProfilByPseudo("boby");
 		assertTrue(optUtilisateur.isPresent());
 		
 		System.out.println(optUtilisateur);
