@@ -10,10 +10,5 @@ public class AffichageControler {
 		public String affichageAccueil() {
 			return "index";
 		}
-	
-	
-	@GetMapping("/creation")
-	public String affichageCreationCompte() {
-		return "profilCreation";
-	}
+
 }
