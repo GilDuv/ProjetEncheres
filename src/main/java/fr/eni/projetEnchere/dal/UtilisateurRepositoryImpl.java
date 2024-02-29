@@ -128,9 +128,22 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 	
 	@Override
 	public Utilisateur modifierProfil(Utilisateur utilisateur) {
-		String sql = "update utilisateurs set nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?, credit=?, administrateur=? where pseudo=?";
+		String sql = "update utilisateurs set nom=?, prenom=?, email=?, "
+				+ "telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?,"
+				+ "credit=?,administrateur=? where pseudo=?";
 		
-		int nbLignes = jdbcTemplate.update(sql,utilisateur.getNom(),utilisateur.getPrenom(),utilisateur.getEmail(),utilisateur.getTelephone(),utilisateur.getRue(),utilisateur.getCodePostal(),utilisateur.getVille(),utilisateur.getMotDePasse(),utilisateur.getCredit(),utilisateur.isAdministrateur(),utilisateur.getPseudo());
+		int nbLignes = jdbcTemplate.update(sql,
+				utilisateur.getNom(),
+				utilisateur.getPrenom(),
+				utilisateur.getEmail(),
+				utilisateur.getTelephone(),
+				utilisateur.getRue(),
+				utilisateur.getCodePostal(),
+				utilisateur.getVille(),
+				utilisateur.getMotDePasse(),
+				utilisateur.getCredit(),
+				utilisateur.isAdministrateur(),
+				utilisateur.getPseudo());
 		if (nbLignes == 0) {
 			throw new UtilisateurNotFoundRuntimeException();
 		}

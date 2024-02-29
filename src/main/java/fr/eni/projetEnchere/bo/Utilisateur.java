@@ -15,8 +15,8 @@ public class Utilisateur {
 	private String CodePostal;
 	private String ville;
 	private String motDePasse;
-	private Integer credit;
-	private boolean administrateur;
+	private Integer credit = 0;
+	private boolean administrateur = false;
 	
 	List<Article> articlesVendus;
 	List<Article> articlesAchetés;
@@ -27,6 +27,24 @@ public class Utilisateur {
 
 	
 	
+	
+	public Utilisateur(Integer noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String codePostal, String ville, String motDePasse) {
+		this.noUtilisateur = noUtilisateur;
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		CodePostal = codePostal;
+		this.ville = ville;
+		this.motDePasse = motDePasse;
+	}
+
+
+
+
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, Integer credit, boolean administrateur) {
 		this.pseudo = pseudo;
@@ -168,7 +186,7 @@ public class Utilisateur {
 		return credit;
 	}
 	public void setCredit(Integer credit) {
-		this.credit = credit;
+		this.credit = 0;
 	}
 	
 	public List<Article> getVentes() {
