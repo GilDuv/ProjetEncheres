@@ -13,11 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import fr.eni.projetEnchere.bo.Utilisateur;
 import fr.eni.projetEnchere.dal.UtilisateurRepositoryImpl;
 import fr.eni.projetEnchere.exceptions.UtilisateurNotFound;
@@ -34,8 +30,8 @@ public class UtilisateurApplicationTest {
 	@BeforeEach
 	void initTest() {
 		jdbcTemplate.execute(" DELETE FROM UTILISATEURS");
-		jdbcTemplate.execute("INSERT INTO UTILISATEURS (no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur)VALUES (1,'bool','Dupont','Bernard','beber@live.fr','0652764587','18 rue du soleil','44000','nantes','{bcrypt}$2a$10$NGjU/wi4Sp3nzZsNL.ZEgOkLFsMXnRsbBJzKZYyzPk4vEyH.2NYmW',0,true)");
-		jdbcTemplate.execute("INSERT INTO UTILISATEURS (no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur)VALUES (2,'Rintintin','Durant','David','tontondavid@live.fr','0652765648','18 rue du soleil levant','79000','niort','{bcrypt}$2a$10$NGjU/wi4Sp3nzZsNL.ZEgOkLFsMXnRsbBJzKZYyzPk4vEyH.2NYmW',0,false)");
+		jdbcTemplate.execute("INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur)VALUES (1,'bool','Dupont','Bernard','beber@live.fr','0652764587','18 rue du soleil','44000','nantes','{bcrypt}$2a$10$NGjU/wi4Sp3nzZsNL.ZEgOkLFsMXnRsbBJzKZYyzPk4vEyH.2NYmW',0,true)");
+		jdbcTemplate.execute("INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur)VALUES (2,'Rintintin','Durant','David','tontondavid@live.fr','0652765648','18 rue du soleil levant','79000','niort','{bcrypt}$2a$10$NGjU/wi4Sp3nzZsNL.ZEgOkLFsMXnRsbBJzKZYyzPk4vEyH.2NYmW',0,false)");
 	}
 	
 	@Test
@@ -77,7 +73,7 @@ public class UtilisateurApplicationTest {
 	@Test
 	@DisplayName("Test creerProfil")
 	void testCreerProfil() {
-		Utilisateur utilisateur=new Utilisateur(100,"boby", "Marley", "Bob", "boby@gmail.com", "0685749632", "39 rue de la paix", "44000", "Nantes", "{bcrypt}$2a$10$NGjU/wi4Sp3nzZsNL.ZEgOkLFsMXnRsbBJzKZYyzPk4vEyH.2NYmW$$w0rd",0,false);
+		Utilisateur utilisateur=new Utilisateur("boby", "Marley", "Bob", "boby@gmail.com", "0685749632", "39 rue de la paix", "44000", "Nantes", "{bcrypt}$2a$10$NGjU/wi4Sp3nzZsNL.ZEgOkLFsMXnRsbBJzKZYyzPk4vEyH.2NYmW$$w0rd",0,false);
 		Utilisateur utilisateurResultat;
 		try {
 			utilisateurResultat = utilisateurRepository.creerProfil(utilisateur);
