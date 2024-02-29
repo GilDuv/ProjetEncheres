@@ -30,6 +30,7 @@ public class TrocencheresSecurity {
 				.permitAll()
 				.defaultSuccessUrl("/")
 			)
+			//.csrf().disable()
 			.logout((logout) -> logout.permitAll()
 					.logoutSuccessUrl("/"));
 

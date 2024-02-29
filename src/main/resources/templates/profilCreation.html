@@ -17,38 +17,38 @@
 <!-- Formulaire création de profil -->
     <div class="container">
         <h1 class="text-center mt-5">Création du Profil</h1>
-        <form class="row g-3 needs-validation" novalidate>
+        <form action="/creation" method="POST" th:object="${utilisateurs}" class="row g-3 needs-validation" novalidate>
             <div class="col-md-6">
                 <label for="validationCustom01" class="form-label">Pseudo :</label>
-                <input type="text" class="form-control" id="validationCustom01" required>
+                <input type="text" class="form-control" id="validationCustom01" th:field="*{pseudo}" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="col-md-6">
                 <label for="validationCustom02" class="form-label">Nom :</label>
-                <input type="text" class="form-control" id="validationCustom02" required>
+                <input type="text" class="form-control" id="validationCustom02" th:field="*{nom}" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="col-md-6">
                 <label for="validationCustom03" class="form-label">Prénom :</label>
-                <input type="text" class="form-control" id="validationCustom03" required>
+                <input type="text" class="form-control" id="validationCustom03" th:field="*{prenom}" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="col-md-6">
                 <label for="validationCustom04" class="form-label">Email :</label>
-                <input type="text" class="form-control" id="validationCustom04" required>
+                <input type="text" class="form-control" id="validationCustom04" th:field="*{email}" required>
                 <div class="invalid-feedback">
                     Please provide a valid email.
                 </div>
             </div>
             <div class="col-md-6">
                 <label for="validationCustom04" class="form-label">Telephone :</label>
-                <input type="text" class="form-control" id="validationCustom05" required>
+                <input type="text" class="form-control" id="validationCustom05" th:field="*{telephone}" required>
                 <div class="invalid-feedback">
                     Please provide a valid phone.
                 </div>
@@ -56,28 +56,28 @@
             
             <div class="col-md-6">
                 <label for="validationCustom06" class="form-label">Rue :</label>
-                <input type="text" class="form-control" id="validationCustom06" required>
+                <input type="text" class="form-control" id="validationCustom06" th:field="*{rue}" required>
                 <div class="invalid-feedback">
                     Please provide a valid street.
                 </div>
             </div>
             <div class="col-md-6">
                 <label for="validationCustom06" class="form-label">Code Postal :</label>
-                <input type="text" class="form-control" id="validationCustom07" required>
+                <input type="text" class="form-control" id="validationCustom07" th:field="*{codePostal}" required>
                 <div class="invalid-feedback">
                     Please provide a valid CP.
                 </div>
             </div>
             <div class="col-md-6">
                 <label for="validationCustom06" class="form-label">Ville :</label>
-                <input type="text" class="form-control" id="validationCustom08" required>
+                <input type="text" class="form-control" id="validationCustom08" th:field="*{ville}" required>
                 <div class="invalid-feedback">
                     Please provide a valid Town.
                 </div>
             </div>
             <div class="col-md-6">
                 <label for="validationCustom06" class="form-label">Mot de passe :</label>
-                <input type="text" class="form-control" id="validationCustom09" required>
+                <input type="text" class="form-control" id="validationCustom09" th:field="*{motDePasse}" required>
                 <div class="invalid-feedback">
                     Please provide a valid password.
                 </div>
@@ -101,6 +101,8 @@
                     </div>
                 </div>
             </div>
+            <!-- Include CSRF token -->
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
             <div class="col-12">
                 <button class="btn btn-primary me-2" type="submit">Créer</button>
                 <button class="btn btn-secondary" type="button">Annuler</button>

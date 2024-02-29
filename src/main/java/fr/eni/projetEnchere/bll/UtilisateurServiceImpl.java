@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
 import fr.eni.projetEnchere.bo.Utilisateur;
 import fr.eni.projetEnchere.dal.UtilisateurRepository;
 import fr.eni.projetEnchere.exceptions.UtilisateurNotFoundRuntimeException;
 
-
+@Service
 @Primary
 public class UtilisateurServiceImpl implements UtilisateurService {
 
@@ -21,6 +22,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		this.utilisateurRepository = utilisateurRepository;
 				
 	}
+	
 	//Attribut static
 	private static List<Utilisateur> lstUtilisateur = new ArrayList<>();
 	private static int indexUtilisateur = 1;
@@ -33,10 +35,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	}
 	
 	public Utilisateur consulterUtilisateurParId(String pseudo) {
-		Optional<Utilisateur> optGenre = utilisateurRepository.findProfilByPseudo(pseudo);
+		Optional<Utilisateur> optPseudo = utilisateurRepository.findProfilByPseudo(pseudo);
 		
-		if(optGenre.isPresent()) {
-			return optGenre.get();
+		if(optPseudo.isPresent()) {
+			return optPseudo.get();
 		}
 		
 		throw new UtilisateurNotFoundRuntimeException(); 
