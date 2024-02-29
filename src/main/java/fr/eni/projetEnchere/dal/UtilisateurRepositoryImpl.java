@@ -60,7 +60,10 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 	@Override
 	public Optional<Utilisateur> findProfilByPseudo(String pseudo) {
 		
+
 			String sql="SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur FROM UTILISATEURS where pseudo = ?";
+
+
 			Optional<Utilisateur> optUtilisateur =null;
 			
 			RowMapper<Utilisateur> rowMapper= new RowMapper<Utilisateur>() {
@@ -134,8 +137,6 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 		// TODO Auto-generated method stub
 		
 	}
-
-
 
 
 	@Override
