@@ -4,44 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENI Enchères - Liste des Enchères</title>
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/style.css">
+    <link rel="stylesheet" data-th-href="@{/assets/css/style.css}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
     <div class="container-fluid">
-        <!-- Header -->
-        <header>
-            <div class="header-title text-center">Eni - Enchères</div>
-        </header>
-
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <button class="navbar-toggler border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" th:href="@{creation}">S'inscrire</a>
-                        </li>
-                        
-						<div sec:authorize="not isAuthenticated()">
-                        <li class="nav-item"><a class="nav-link text-white" th:href="@{connexion}">Se connecter</a></li>
-                        </div>
-                        
-                        <div sec:authorize="isAuthenticated()">
-							<li class="nav-item">
-					 			<form class="nav-item nav-link text-white" th:action="@{/logout}" method="post">
-	            					<input type="submit" value="Se déconnecter"/>
-	        					</form>
-							</li>
-						</div>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div th:replace="~{fragment/fragment-entete :: frag-entete}"></div>
 
         <!-- Main -->
         <main>
@@ -70,10 +38,10 @@
     </div>
                 
 
-            <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="row mt-4 row-cols-1 row-cols-md-4 g-4">
                 <div class="col">
                     <div class="card text-bg-primary">
-                    <img src="/Projet enchères/assets/images/PC-Portable-Gaming.jpg" class="card-img-top" alt="...">
+                    <img src="/assets/images/PC-Portable-Gaming.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Pc Portable Gaming - 3 écrans</h5>
                             <p class="card-text">Prix : 1350 points</p>
@@ -85,7 +53,7 @@
 
                 <div class="col">
                     <div class="card text-bg-primary">
-                    <img src="/Projet enchères/assets/images/bouclier-de-brennus.jpg" class="card-img-top" alt="...">
+                    <img src="/assets/images/bouclier-de-brennus.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Bouclier de Brennus</h5>
                             <p class="card-text">Prix : 15 350 points</p>
@@ -97,7 +65,7 @@
 
                 <div class="col">
                     <div class="card text-bg-primary">
-                    <img src="/Projet enchères/assets/images/pop_pikachu.jpg" class="card-img-top" alt="...">
+                    <img src="/assets/images/pop_pikachu.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Funko Pop - Pika vénère</h5>
                             <p class="card-text">Prix : 350 points</p>
@@ -109,7 +77,7 @@
 
                 <div class="col">
                     <div class="card text-bg-primary">
-                    <img src="/Projet enchères/assets/images/table-bois-salle-a-manger-hemisphere-sud.jpg" class="card-img-top" alt="...">
+                    <img src="/assets/images/table-bois-salle-a-manger-hemisphere-sud.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Table salle à manger en bois véritable</h5>
                             <p class="card-text">Prix : 2 350 points</p>
