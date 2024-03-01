@@ -3,18 +3,55 @@ package fr.eni.projetEnchere.bo;
 import java.util.List;
 import java.util.Objects;
 
-public class Utilisateur {
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
-	private Integer noUtilisateur = 1;
+public class Utilisateur {
+	
+	//Attributs
+
+	private Integer noUtilisateur;
+	
+	//Patterns pour le formulaire d'inscription
+	@NotBlank
+	@Size(max = 30)
 	private String pseudo;
+	
+	@NotBlank
+	@Size(max = 30)
 	private String nom;
+	
+	@NotBlank
+	@Size(max = 30)
 	private String prenom;
+	
+	@Email
+	@Pattern(regexp = "\\w+@campus-eni.fr")
 	private String email;
+	
+	@Pattern(regexp="^0[1-9]([-. ]?[0-9]{2}){4}$")
 	private String telephone;
+	
+	@NotBlank
+	@Size(max = 30)
 	private String rue;
+	
+	@Pattern(regexp="^(?:[0-8][0-9]|9[0-8])\\d{3}$")
+	@Size(max = 10)
 	private String codePostal;
+	
+	@NotBlank
+	@Size(max = 30)
 	private String ville;
+	
+	@NotBlank
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!*()_{}|:;<>,.?/~\\-]).{8,}$")
+	@Size(max = 256)
 	private String motDePasse;
+	
+	
 	private Integer credit = 0;
 	private boolean administrateur = false;
 	
@@ -22,11 +59,9 @@ public class Utilisateur {
 	List<Article> articlesAchetés;
 	List<Enchere> encheres;
 	
+	//Constructeurs
 	public Utilisateur() {
 	}
-
-	
-	
 	
 	public Utilisateur(Integer noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String motDePasse) {
@@ -41,9 +76,6 @@ public class Utilisateur {
 		this.ville = ville;
 		this.motDePasse = motDePasse;
 	}
-
-
-
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, Integer credit, boolean administrateur) {
@@ -98,7 +130,6 @@ public class Utilisateur {
 		this.articlesAchetés = achats;
 		this.encheres= encheres;
 	}
-
 
 
 	public Utilisateur(Integer noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
@@ -202,31 +233,21 @@ public class Utilisateur {
 		this.articlesAchetés = achats;
 	}
 
-
-
 	public List<Enchere> getEncheres() {
 		return encheres;
 	}
-
-
 
 	public void setEncheres(List<Enchere> encheres) {
 		this.encheres = encheres;
 	}
 
-
-
 	public boolean isAdministrateur() {
 		return administrateur;
 	}
 
-
-
 	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
 	}
-
-
 
 	@Override
 	public int hashCode() {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,71 +17,62 @@
 <!-- Formulaire création de profil -->
     <div class="container">
         <h1 class="text-center mt-5">Création du Profil</h1>
+			 
         <form action="/creation" method="POST" th:object="${utilisateurs}" class="row g-3 needs-validation" novalidate>
             <div class="col-md-6">
                 <label for="validationCustom01" class="form-label">Pseudo :</label>
-                <input type="text" class="form-control" id="validationCustom01" th:field="*{pseudo}" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
+                <input type="text" class="form-control" id="validationCustom01" th:field="*{pseudo}">
+	            <div th:replace="~{fragment/fragment-error :: frag-error('pseudo')}"></div>
             </div>
+            
             <div class="col-md-6">
                 <label for="validationCustom02" class="form-label">Nom :</label>
                 <input type="text" class="form-control" id="validationCustom02" th:field="*{nom}" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
+                <div th:replace="~{fragment/fragment-error :: frag-error('nom')}"></div>
             </div>
+            
             <div class="col-md-6">
                 <label for="validationCustom03" class="form-label">Prénom :</label>
                 <input type="text" class="form-control" id="validationCustom03" th:field="*{prenom}" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
+                <div th:replace="~{fragment/fragment-error :: frag-error('prenom')}"></div>
             </div>
+            
             <div class="col-md-6">
                 <label for="validationCustom04" class="form-label">Email :</label>
                 <input type="text" class="form-control" id="validationCustom04" th:field="*{email}" required>
-                <div class="invalid-feedback">
-                    Please provide a valid email.
-                </div>
+                <div th:replace="~{fragment/fragment-error :: frag-error('email')}"></div>
             </div>
+            
             <div class="col-md-6">
                 <label for="validationCustom04" class="form-label">Telephone :</label>
                 <input type="text" class="form-control" id="validationCustom05" th:field="*{telephone}" required>
-                <div class="invalid-feedback">
-                    Please provide a valid phone.
-                </div>
+                <div th:replace="~{fragment/fragment-error :: frag-error('telephone')}"></div>
             </div>
             
             <div class="col-md-6">
                 <label for="validationCustom06" class="form-label">Rue :</label>
                 <input type="text" class="form-control" id="validationCustom06" th:field="*{rue}" required>
-                <div class="invalid-feedback">
-                    Please provide a valid street.
-                </div>
+                <div th:replace="~{fragment/fragment-error :: frag-error('rue')}"></div>
             </div>
+            
             <div class="col-md-6">
                 <label for="validationCustom06" class="form-label">Code Postal :</label>
                 <input type="text" class="form-control" id="validationCustom07" th:field="*{codePostal}" required>
-                <div class="invalid-feedback">
-                    Please provide a valid CP.
-                </div>
+                <div th:replace="~{fragment/fragment-error :: frag-error('codePostal')}"></div>
             </div>
+            
             <div class="col-md-6">
                 <label for="validationCustom06" class="form-label">Ville :</label>
                 <input type="text" class="form-control" id="validationCustom08" th:field="*{ville}" required>
-                <div class="invalid-feedback">
-                    Please provide a valid Town.
-                </div>
+                <div th:replace="~{fragment/fragment-error :: frag-error('ville')}"></div>
             </div>
+            
             <div class="col-md-6">
                 <label for="validationCustom06" class="form-label">Mot de passe :</label>
                 <input type="text" class="form-control" id="validationCustom09" th:field="*{motDePasse}" required>
-                <div class="invalid-feedback">
-                    Please provide a valid password.
-                </div>
+                <div th:replace="~{fragment/fragment-error :: frag-error('motDePasse')}"></div>
             </div>
+            
             <div class="col-md-6">
                 <label for="validationCustom06" class="form-label">Confirmation :</label>
                 <input type="text" class="form-control" id="validationCustom10" required>

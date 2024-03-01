@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.context.annotation.Primary;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.eni.projetEnchere.bo.Utilisateur;
@@ -16,10 +17,11 @@ import fr.eni.projetEnchere.exceptions.UtilisateurNotFoundRuntimeException;
 public class UtilisateurServiceImpl implements UtilisateurService {
 
 	private UtilisateurRepository utilisateurRepository;
+	private PasswordEncoder passwordEncoder;
 	
-	
-	public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository) {
+	public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository, PasswordEncoder passwordEncoder) {
 		this.utilisateurRepository = utilisateurRepository;
+		this.passwordEncoder = passwordEncoder;
 				
 	}
 	
@@ -44,12 +46,15 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		throw new UtilisateurNotFoundRuntimeException(); 
 	}
 
-	public Utilisateur creerUtilisateur(Utilisateur utilisateur) {
+	public void creerUtilisateur(Utilisateur utilisateur) {
 		//Sauvegarde de l'utilisateur
 		//utilisateur.setNoUtilisateur(indexUtilisateur++);
 		//lstUtilisateur.add(utilisateur);
-		System.err.println("UtilisateurServiceImpl.creerUtilisateur()");
-		return utilisateurRepository.creerProfil(utilisateur);
+		//System.err.println("UtilisateurServiceImpl.creerUtilisateur()");
+		
+		utilisateur.setMotDePasse(passwordEncoder.encode(utilisateur.getMotDePasse()));
+		//System.err.println(utilisateur.getMotDePasse());
+		utilisateurRepository.creerProfil(utilisateur);
 	}
 	
 	public void supprimerUtilisateur(Integer idUtilisateur) {
@@ -59,5 +64,5 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	public void modifierUtilisateur(Utilisateur utilisateur) {
 		utilisateurRepository.modifierProfil(utilisateur);
 	}
-	
+
 }
