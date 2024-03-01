@@ -15,6 +15,7 @@ public interface UtilisateurService {
 	public void supprimerUtilisateur(Integer idUtilisateur);
 	
 	public void modifierUtilisateur(Utilisateur utilisateur);
+
 	
 	
 }

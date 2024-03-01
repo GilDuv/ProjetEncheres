@@ -62,7 +62,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 	public Optional<Utilisateur> findProfilByPseudo(String pseudo) {
 		
 
-			String sql="SELECT pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur FROM UTILISATEURS where pseudo = ?";
+			String sql="SELECT pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur FROM UTILISATEURS WHERE pseudo = ?";
 
 
 			Optional<Utilisateur> optUtilisateur =null;

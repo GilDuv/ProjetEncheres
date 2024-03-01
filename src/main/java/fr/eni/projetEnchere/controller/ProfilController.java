@@ -1,8 +1,5 @@
 package fr.eni.projetEnchere.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -46,5 +43,12 @@ public class ProfilController {
 		
 	}
 
+
+	@GetMapping("/modification")
+    public String modificationCompte(@RequestParam("pseudo") String pseudo, Model model) {
+       Utilisateur u = this.utilisateurService.consulterUtilisateurParId(pseudo);
+       model.addAttribute("utilisateur",u);
+       return "profilModification";
+	}
 
 }
