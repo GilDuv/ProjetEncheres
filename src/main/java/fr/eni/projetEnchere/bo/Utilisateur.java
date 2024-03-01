@@ -37,7 +37,7 @@ public class Utilisateur {
 		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
-		CodePostal = codePostal;
+		this.codePostal = codePostal;
 		this.ville = ville;
 		this.motDePasse = motDePasse;
 	}
@@ -168,7 +168,7 @@ public class Utilisateur {
 		return codePostal;
 	}
 	public void setCodePostal(String codePostal) {
-		codePostal = codePostal;
+		this.codePostal = codePostal;
 	}
 	public String getVille() {
 		return ville;
