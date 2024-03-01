@@ -5,14 +5,14 @@ import java.util.Objects;
 
 public class Utilisateur {
 
-	private Integer noUtilisateur;
+	private Integer noUtilisateur = 1;
 	private String pseudo;
 	private String nom;
 	private String prenom;
 	private String email;
 	private String telephone;
 	private String rue;
-	private String CodePostal;
+	private String codePostal;
 	private String ville;
 	private String motDePasse;
 	private Integer credit = 0;
@@ -37,7 +37,7 @@ public class Utilisateur {
 		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
-		CodePostal = codePostal;
+		this.codePostal = codePostal;
 		this.ville = ville;
 		this.motDePasse = motDePasse;
 	}
@@ -53,7 +53,7 @@ public class Utilisateur {
 		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
-		CodePostal = codePostal;
+		this.codePostal = codePostal;
 		this.ville = ville;
 		this.motDePasse = motDePasse;
 		this.credit = credit;
@@ -71,7 +71,7 @@ public class Utilisateur {
 		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
-		CodePostal = codePostal;
+		this.codePostal = codePostal;
 		this.ville = ville;
 		this.motDePasse = motDePasse;
 		this.credit = credit;
@@ -89,7 +89,7 @@ public class Utilisateur {
 		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
-		this.CodePostal = codePostal;
+		this.codePostal = codePostal;
 		this.ville = ville;
 		this.motDePasse = motDePasse;
 		this.credit = credit;
@@ -111,7 +111,7 @@ public class Utilisateur {
 		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
-		this.CodePostal = codePostal;
+		this.codePostal = codePostal;
 		this.ville = ville;
 		this.motDePasse = motDePasse;
 		this.credit = credit;
@@ -165,10 +165,10 @@ public class Utilisateur {
 		this.rue = rue;
 	}
 	public String getCodePostal() {
-		return CodePostal;
+		return codePostal;
 	}
 	public void setCodePostal(String codePostal) {
-		CodePostal = codePostal;
+		this.codePostal = codePostal;
 	}
 	public String getVille() {
 		return ville;
@@ -267,7 +267,7 @@ public class Utilisateur {
 		builder.append(", rue=");
 		builder.append(rue);
 		builder.append(", CodePostal=");
-		builder.append(CodePostal);
+		builder.append(codePostal);
 		builder.append(", ville=");
 		builder.append(ville);
 		builder.append(", motDePasse=");

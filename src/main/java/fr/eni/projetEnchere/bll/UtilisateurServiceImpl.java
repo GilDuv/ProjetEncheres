@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
 import fr.eni.projetEnchere.bo.Utilisateur;
 import fr.eni.projetEnchere.dal.UtilisateurRepository;
 import fr.eni.projetEnchere.exceptions.UtilisateurNotFoundRuntimeException;
 
-
+@Service
 @Primary
 public class UtilisateurServiceImpl implements UtilisateurService {
 
@@ -21,9 +22,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		this.utilisateurRepository = utilisateurRepository;
 				
 	}
+	
 	//Attribut static
-	private static List<Utilisateur> lstUtilisateur = new ArrayList<>();
-	private static int indexUtilisateur = 1;
+	//private static List<Utilisateur> lstUtilisateur = new ArrayList<>();
+	//private static int indexUtilisateur = 1;
 	
 	
 	//Methode
@@ -33,19 +35,21 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	}
 	
 	public Utilisateur consulterUtilisateurParId(String pseudo) {
-		Optional<Utilisateur> optGenre = utilisateurRepository.findProfilByPseudo(pseudo);
+		Optional<Utilisateur> optPseudo = utilisateurRepository.findProfilByPseudo(pseudo);
 		
-		if(optGenre.isPresent()) {
-			return optGenre.get();
+		if(optPseudo.isPresent()) {
+			return optPseudo.get();
 		}
 		
 		throw new UtilisateurNotFoundRuntimeException(); 
 	}
 
-	public void creerUtilisateur(Utilisateur utilisateur) {
+	public Utilisateur creerUtilisateur(Utilisateur utilisateur) {
 		//Sauvegarde de l'utilisateur
-		utilisateur.setNoUtilisateur(indexUtilisateur++);
-		lstUtilisateur.add(utilisateur);
+		//utilisateur.setNoUtilisateur(indexUtilisateur++);
+		//lstUtilisateur.add(utilisateur);
+		System.err.println("UtilisateurServiceImpl.creerUtilisateur()");
+		return utilisateurRepository.creerProfil(utilisateur);
 	}
 	
 	public void supprimerUtilisateur(Integer idUtilisateur) {
