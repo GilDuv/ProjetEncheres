@@ -1,8 +1,5 @@
 package fr.eni.projetEnchere.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +13,6 @@ import fr.eni.projetEnchere.bo.Utilisateur;
 @Controller
 public class ProfilController {
 	
-<<<<<<< HEAD
 	private UtilisateurService utilisateurService;
 	
 	public ProfilController(UtilisateurService utilisateurService) {
@@ -38,8 +34,10 @@ public class ProfilController {
 		
 	}
 
-=======
-	
->>>>>>> amelia
-
+	@GetMapping("/modification")
+    public String modificationCompte(@RequestParam("pseudo") String pseudo, Model model) {
+       Utilisateur u = this.utilisateurService.consulterUtilisateurParId(pseudo);
+       model.addAttribute("utilisateur",u);
+       return "profilModification";
+	}
 }

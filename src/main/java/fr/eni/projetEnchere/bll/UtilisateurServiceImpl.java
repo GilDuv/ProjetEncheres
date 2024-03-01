@@ -1,6 +1,5 @@
 package fr.eni.projetEnchere.bll;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,5 +58,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	public void modifierUtilisateur(Utilisateur utilisateur) {
 		utilisateurRepository.modifierProfil(utilisateur);
 	}
+
+
 	
 }
