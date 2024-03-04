@@ -24,7 +24,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
  
 	@Override
 	public List<Article> findAllArticles(){
-		String sql = "select no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente";
+		String sql = "select no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente FROM ARTICLES";
 		RowMapper<Article> rowMapper = new RowMapper<>() {
 			public Article mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Article article = new Article();

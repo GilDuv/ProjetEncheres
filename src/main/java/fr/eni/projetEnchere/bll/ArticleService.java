@@ -1,5 +1,9 @@
 package fr.eni.projetEnchere.bll;
 
-public interface ArticleService {
+import java.util.List;
 
+import fr.eni.projetEnchere.bo.Article;
+
+public interface ArticleService {
+	List<Article> consulterArticles();
 }

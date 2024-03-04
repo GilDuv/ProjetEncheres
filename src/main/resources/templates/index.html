@@ -16,28 +16,23 @@
             <div class="container">
                 <h1 class="text-center mt-5">Liste des Enchères</h1>
 
-                <form class="d-flex my-4" role="search">
+                <form class="d-flex my-4" th:object="${categorie}" role="search">
                     <input class="form-control me-2" type="search" placeholder="Le nom de l'article contient" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Rechercher</button>
-                </form>
 
-                <select class="form-select mb-4" aria-label="Default select example">
+                <select class="form-select mb-4" th:field="*{categorie}" aria-label="Default select example">
                     <option selected>Toutes les catégories</option>
-                    <option value="informatique">Informatique</option>
-                    <option value="ameublement">Ameublement</option>
-                    <option value="vêtement">Vêtement</option>
-                    <option value="sport&loisirs">Sport & Loisirs</option>
+                    <option th:each="c : ${@articleServiceBean.consulterArticles()" th:value="${c.noCategorie}" th:text="${c.libelle}"></option>
+        
                 </select>
+                </form>
 
                 <div class="row row-cols-1 row-cols-md-4 g-4">
                     <!-- Cards -->
                     <!-- You can add your card elements here -->
                 </div>
             </div>
-        </main>
-    </div>
-                
-
+            
             <div class="row mt-4 row-cols-1 row-cols-md-4 g-4">
                 <div class="col">
                     <div class="card text-bg-primary">

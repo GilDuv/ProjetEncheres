@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
 import fr.eni.projetEnchere.bo.Article;
 import fr.eni.projetEnchere.dal.ArticleRepository;
 
+@Service
 @Primary
 public class ArticleServiceImpl implements ArticleService {
 
@@ -18,13 +20,10 @@ public class ArticleServiceImpl implements ArticleService {
 	public ArticleServiceImpl (ArticleRepository articleRepository) {
 		this.articleRepository = articleRepository;		
 	}
-	//Attribut
-	private static List<Article> lstArticles = new ArrayList<>();
-	
 	
 	
 	//Methode
 	public List<Article> consulterArticles(){
-		return lstArticles;
+		return articleRepository.findAllArticles();
 	}
 }
