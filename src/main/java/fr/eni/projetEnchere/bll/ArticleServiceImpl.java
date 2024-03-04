@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import fr.eni.projetEnchere.bo.Article;
+import fr.eni.projetEnchere.bo.Categorie;
 import fr.eni.projetEnchere.dal.ArticleRepository;
 
 @Service
@@ -25,5 +26,13 @@ public class ArticleServiceImpl implements ArticleService {
 	//Methode
 	public List<Article> consulterArticles(){
 		return articleRepository.findAllArticles();
+	}
+
+
+
+	@Override
+	public List<Categorie> consulterCategories() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

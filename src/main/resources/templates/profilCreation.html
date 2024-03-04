@@ -23,6 +23,9 @@
                 <label for="validationCustom01" class="form-label">Pseudo :</label>
                 <input type="text" class="form-control" id="validationCustom01" th:field="*{pseudo}">
 	            <div th:replace="~{fragment/fragment-error :: frag-error('pseudo')}"></div>
+	            <div th:if="${errorMessagePseudo}" class="error-message">
+   					 <p th:text="${errorMessagePseudo}"></p>
+				</div>
             </div>
             
             <div class="col-md-6">
@@ -41,6 +44,9 @@
                 <label for="validationCustom04" class="form-label">Email :</label>
                 <input type="text" class="form-control" id="validationCustom04" th:field="*{email}" required>
                 <div th:replace="~{fragment/fragment-error :: frag-error('email')}"></div>
+                <div th:if="${errorMessageEmail}" class="error-message">
+   					 <p th:text="${errorMessageEmail}"></p>
+				</div>
             </div>
             
             <div class="col-md-6">
