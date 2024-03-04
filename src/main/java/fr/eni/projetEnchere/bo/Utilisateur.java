@@ -1,14 +1,21 @@
 package fr.eni.projetEnchere.bo;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-public class Utilisateur {
+public class Utilisateur implements UserDetails {
 	
 	//Attributs
 
@@ -55,6 +62,9 @@ public class Utilisateur {
 	
 	private Integer credit = 0;
 	private boolean administrateur = false;
+	
+	
+	private List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
 	
 	List<Article> articlesVendus;
 	List<Article> articlesAchetés;
@@ -306,6 +316,51 @@ public class Utilisateur {
 		builder.append(encheres);
 		builder.append("]");
 		return builder.toString();
+	}
+	
+	public void addRole(String role) {
+		roles.add(new SimpleGrantedAuthority(role));
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return roles;
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return motDePasse;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return pseudo;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 

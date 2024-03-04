@@ -8,7 +8,9 @@ public interface UtilisateurService {
 	
 	public List<Utilisateur> consulterUtilisateurs();
 	
-	public Utilisateur consulterUtilisateurParId(String pseudo);
+	public Utilisateur consulterUtilisateurParPseudo(String pseudo);
+	
+	public Utilisateur consulterUtilisateurParId(Integer noUtilisateur);
 	
 	public void creerUtilisateur(Utilisateur utilisateur);
 	

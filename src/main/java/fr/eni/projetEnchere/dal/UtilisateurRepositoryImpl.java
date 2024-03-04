@@ -73,6 +73,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 				public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
 					Utilisateur utilisateur = new Utilisateur();
 					utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+					utilisateur.setPseudo(rs.getString("pseudo"));
 					utilisateur.setNom(rs.getString("nom"));
 					utilisateur.setPrenom(rs.getString("prenom"));
 					utilisateur.setEmail(rs.getString("email"));
@@ -83,7 +84,6 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 					utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 					utilisateur.setCredit(rs.getInt("credit"));
 					utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
-					utilisateur.setPseudo(rs.getString("pseudo"));
 					return utilisateur;
 				}
 			};
@@ -91,6 +91,47 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 			
 			try {
 				Utilisateur utilisateur = jdbcTemplate.queryForObject(sql, rowMapper,new Object[]{pseudo});
+				optUtilisateur = Optional.of(utilisateur);
+			} catch (EmptyResultDataAccessException exc) {
+				optUtilisateur = Optional.empty();
+			}
+		return optUtilisateur;
+	}
+	
+	@Override
+	public Optional<Utilisateur> findProfilById(Integer noUtilisateur) {
+		
+
+			String sql="SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur FROM UTILISATEURS WHERE no_utilisateur = ?";
+
+
+			Optional<Utilisateur> optUtilisateur =null;
+			
+			RowMapper<Utilisateur> rowMapper= new RowMapper<Utilisateur>() {
+				
+				@Override
+				public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
+					Utilisateur utilisateur = new Utilisateur();
+					utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+					utilisateur.setPseudo(rs.getString("pseudo"));
+					utilisateur.setNom(rs.getString("nom"));
+					utilisateur.setPrenom(rs.getString("prenom"));
+					utilisateur.setEmail(rs.getString("email"));
+					utilisateur.setTelephone(rs.getString("telephone"));
+					utilisateur.setRue(rs.getString("rue"));
+					utilisateur.setCodePostal(rs.getString("code_postal"));
+					utilisateur.setVille(rs.getString("ville"));
+					utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
+					utilisateur.setCredit(rs.getInt("credit"));
+					utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+					utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+					return utilisateur;
+				}
+			};
+			
+			
+			try {
+				Utilisateur utilisateur = jdbcTemplate.queryForObject(sql, rowMapper,noUtilisateur);
 				optUtilisateur = Optional.of(utilisateur);
 			} catch (EmptyResultDataAccessException exc) {
 				optUtilisateur = Optional.empty();
@@ -132,7 +173,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 	public Utilisateur modifierProfil(Utilisateur utilisateur) {
 		String sql = "update utilisateurs set pseudo=?, nom=?, prenom=?, email=?, "
 				+ "telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?"
-				+" where pseudo=?";
+				+" where no_utilisateur=?";
 		
 		int nbLignes = jdbcTemplate.update(sql,
 				utilisateur.getPseudo(),
@@ -144,7 +185,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 				utilisateur.getCodePostal(),
 				utilisateur.getVille(),
 				utilisateur.getMotDePasse(),
-				utilisateur.getPseudo());
+				utilisateur.getNoUtilisateur());
 
 		if (nbLignes == 0) {
 			throw new UtilisateurNotFoundRuntimeException();

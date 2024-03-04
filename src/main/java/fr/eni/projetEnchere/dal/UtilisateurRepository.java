@@ -22,6 +22,8 @@ public interface UtilisateurRepository {
 	public List<Article> getAllArticlesVendus(Utilisateur utilisateur);
 	
 	public List<String> getAllPseudos();
+
+	Optional<Utilisateur> findProfilById(Integer noUtilisateur);
 	
 	
 	

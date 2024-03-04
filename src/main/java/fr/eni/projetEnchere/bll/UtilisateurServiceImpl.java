@@ -35,7 +35,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		return utilisateurRepository.findAllProfil();
 	}
 	
-	public Utilisateur consulterUtilisateurParId(String pseudo) {
+	public Utilisateur consulterUtilisateurParPseudo(String pseudo) {
 		Optional<Utilisateur> optPseudo = utilisateurRepository.findProfilByPseudo(pseudo);
 		
 		if(optPseudo.isPresent()) {
@@ -44,6 +44,17 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		
 		throw new UtilisateurNotFoundRuntimeException(); 
 	}
+	
+	public Utilisateur consulterUtilisateurParId(Integer noUtilisateur) {
+		Optional<Utilisateur> optPseudo = utilisateurRepository.findProfilById(noUtilisateur);
+		
+		if(optPseudo.isPresent()) {
+			return optPseudo.get();
+		}
+		
+		throw new UtilisateurNotFoundRuntimeException(); 
+	}
+	
 
 	public void creerUtilisateur(Utilisateur utilisateur) {
 		//Sauvegarde de l'utilisateur

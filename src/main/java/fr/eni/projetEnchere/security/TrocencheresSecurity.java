@@ -16,7 +16,8 @@ public class TrocencheresSecurity {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
-			.authorizeHttpRequests((requests) -> requests				
+			.authorizeHttpRequests((requests) -> requests
+				.requestMatchers("/modification").permitAll()	
 //				.requestMatchers("/", "/films", "/css/*").permitAll()
 //				.requestMatchers("/creer").hasRole("MEMBRE")
 //				.requestMatchers("/adminGenres").hasRole("ADMINISTRATEUR")
