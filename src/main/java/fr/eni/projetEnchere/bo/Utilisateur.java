@@ -40,11 +40,8 @@ public class Utilisateur {
 	private String rue;
 	
 	//@Pattern(regexp="^(?:[0-8][0-9]|9[0-8])\\d{3}$")
-<<<<<<< HEAD
 	@Size(max = 10)
-=======
 	//@Size(max = 10)
->>>>>>> amelia
 	private String codePostal;
 	
 	//@NotBlank
