@@ -40,4 +40,12 @@ public class ProfilController {
        model.addAttribute("utilisateur",u);
        return "profilModification";
 	}
+	
+	@PostMapping("/modification")
+	public String modificationCompte(@ModelAttribute("utilisateur") Utilisateur utilisateur) {
+		System.out.println("utilisateur modifié :" + utilisateur);
+		this.utilisateurService.modifierUtilisateur(utilisateur);
+		return "redirect:/";
+	}
+	
 }
