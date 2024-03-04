@@ -1,5 +1,6 @@
 package fr.eni.projetEnchere.controller;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,17 +31,23 @@ public class ProfilController {
 	}
 	
 	@PostMapping("/creation")
-	public String creationCompte(@Valid @ModelAttribute("utilisateurs") Utilisateur utilisateur,
+	public String creationCompte(@Valid @ModelAttribute("utilisateurs") Utilisateur utilisateur,Model model,
 			BindingResult bindingResult) {
 		
-		if(bindingResult.hasErrors()) {
-			return "profilCreation";
-		}else {
-			this.utilisateurService.creerUtilisateur(utilisateur);
-			System.out.println("nouveau utilisateur :" + utilisateur);
-			return "redirect:/";			
+		try {
+
+			if(bindingResult.hasErrors()) {
+				return "profilCreation";
+			}else {
+				this.utilisateurService.creerUtilisateur(utilisateur);
+				System.out.println("nouveau utilisateur :" + utilisateur);
+				return "redirect:/";			
+			}
+		} catch (DataIntegrityViolationException e) {
+			model.addAttribute("errorMessagePseudo", "Le pseudo est déjà utilisé. Veuillez en choisir un autre.");
+			model.addAttribute("errorMessageEmail", "L'email est déjà utilisé. Veuillez en choisir un autre.");
+            return "profilCreation";
 		}
-		
 	}
 
 

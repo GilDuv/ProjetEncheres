@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.context.annotation.Primary;
 
 import fr.eni.projetEnchere.bo.Article;
+import fr.eni.projetEnchere.bo.Categorie;
 import fr.eni.projetEnchere.dal.ArticleRepository;
 
 @Primary
@@ -26,5 +27,13 @@ public class ArticleServiceImpl implements ArticleService {
 	//Methode
 	public List<Article> consulterArticles(){
 		return lstArticles;
+	}
+
+
+
+	@Override
+	public List<Categorie> consulterCategories() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

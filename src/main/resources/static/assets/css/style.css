@@ -21,3 +21,7 @@
     height: 20vw;
     object-fit: cover;
 }
+
+.error-message{
+	color: red;
+}

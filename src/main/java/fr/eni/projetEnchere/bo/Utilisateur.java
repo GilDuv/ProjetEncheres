@@ -16,37 +16,37 @@ public class Utilisateur {
 	
 	//Patterns pour le formulaire d'inscription
 	@NotBlank
-	@Size(max = 30)
+	//@Size(max = 30)
 	private String pseudo;
 	
 	@NotBlank
-	@Size(max = 30)
+	//@Size(max = 30)
 	private String nom;
 	
 	@NotBlank
-	@Size(max = 30)
+	//@Size(max = 30)
 	private String prenom;
 	
 	@Email
 	//@Pattern(regexp = "\\w+@campus-eni.fr")
 	private String email;
 	
-	@Pattern(regexp="^0[1-9]([-. ]?[0-9]{2}){4}$")
+	//@Pattern(regexp="^0[1-9]([-. ]?[0-9]{2}){4}$")
 	private String telephone;
 	
 	@NotBlank
-	@Size(max = 30)
+	//@Size(max = 30)
 	private String rue;
 	
-	@Pattern(regexp="^(?:[0-8][0-9]|9[0-8])\\d{3}$")
-	@Size(max = 10)
+	//@Pattern(regexp="^(?:[0-8][0-9]|9[0-8])\\d{3}$")
+	//@Size(max = 10)
 	private String codePostal;
 	
-	@NotBlank
-	@Size(max = 30)
+	//@NotBlank
+	//@Size(max = 30)
 	private String ville;
 	
-	@NotBlank
+	//@NotBlank
 	//@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!*()_{}|:;<>,.?/~\\-]).{8,}$")
 	@Size(max = 256)
 	private String motDePasse;
