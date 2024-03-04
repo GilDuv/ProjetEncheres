@@ -29,16 +29,17 @@ public class Utilisateur {
 	
 	@Email
 	//@Pattern(regexp = "\\w+@campus-eni.fr")
+	//@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
 	private String email;
 	
-	@Pattern(regexp="^0[1-9]([-. ]?[0-9]{2}){4}$")
+	//@Pattern(regexp="^0[1-9]([-. ]?[0-9]{2}){4}$")
 	private String telephone;
 	
 	@NotBlank
 	@Size(max = 30)
 	private String rue;
 	
-	@Pattern(regexp="^(?:[0-8][0-9]|9[0-8])\\d{3}$")
+	//@Pattern(regexp="^(?:[0-8][0-9]|9[0-8])\\d{3}$")
 	@Size(max = 10)
 	private String codePostal;
 	

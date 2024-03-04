@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Liste des Enchères</title>
+	<link rel="stylesheet" data-th-href="@{/assets/css/style.css}">
+</head>
+
+<body>
+<div th:replace="~{fragment/fragment-entete :: frag-entete}"></div>
+
+	<h1>Liste des Enchères</h1>
+
+	<main class="center-main">
+		<table>
+			<!--<thead>
+				<tr>
+					<th>Genre</th>
+					<th>Année</th>
+					<th>Titre</th>
+					<th>Réalisateur</th>
+					<th>Action</th>
+				</tr>
+			</thead>-->
+			<tbody>
+				<!-- th:each : permet de boucler sur tous les Articles et d'afficher autant de tr que d'articles -->
+				<!-- chaque article sera ici placer dans une nouvelle variable a -->
+				<tr th:each="a : ${article}">
+					<td th:text="${a.nomArticle}"></td>
+					<!--<td th:text="${f.annee}"></td>
+					<td th:text="${f.titre}"></td>
+					<td th:text="${f.realisateur.prenom + ' ' + f.realisateur.nom}"></td>
+					<td><a th:href="@{/films/detail(id=${f.id})}">Détail</a>
+						<a th:href="@{/avis/creer(idFilm=${f.id})}">Avis</a>
+					
+					</td>-->
+				</tr>
+			</tbody>
+			
+			
+		</table>
+
+
+	</main>
+
+</body>
+</html>
