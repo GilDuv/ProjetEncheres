@@ -62,7 +62,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 	public Optional<Utilisateur> findProfilByPseudo(String pseudo) {
 		
 
-			String sql="SELECT pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur FROM UTILISATEURS WHERE pseudo = ?";
+			String sql="SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur FROM UTILISATEURS WHERE pseudo = ?";
 
 
 			Optional<Utilisateur> optUtilisateur =null;
@@ -72,7 +72,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 				@Override
 				public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
 					Utilisateur utilisateur = new Utilisateur();
-					utilisateur.setPseudo(rs.getString("pseudo"));
+					utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 					utilisateur.setNom(rs.getString("nom"));
 					utilisateur.setPrenom(rs.getString("prenom"));
 					utilisateur.setEmail(rs.getString("email"));
