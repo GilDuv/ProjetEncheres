@@ -28,7 +28,7 @@ public class Utilisateur {
 	private String prenom;
 	
 	@Email
-	@Pattern(regexp = "\\w+@campus-eni.fr")
+	//@Pattern(regexp = "\\w+@campus-eni.fr")
 	private String email;
 	
 	@Pattern(regexp="^0[1-9]([-. ]?[0-9]{2}){4}$")
@@ -47,7 +47,7 @@ public class Utilisateur {
 	private String ville;
 	
 	@NotBlank
-	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!*()_{}|:;<>,.?/~\\-]).{8,}$")
+	//@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!*()_{}|:;<>,.?/~\\-]).{8,}$")
 	@Size(max = 256)
 	private String motDePasse;
 	

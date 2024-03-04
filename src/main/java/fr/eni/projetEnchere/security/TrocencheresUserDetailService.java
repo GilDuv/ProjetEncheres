@@ -25,6 +25,8 @@ public class TrocencheresUserDetailService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+		System.out.println("TrocencheresUserDetailService.loadUserByUsername()");
+		
 		Optional<Utilisateur> optUtilisateur = utilisateurRepository.findProfilByPseudo(username);
 
 		if (optUtilisateur.isEmpty()) {
@@ -32,7 +34,7 @@ public class TrocencheresUserDetailService implements UserDetailsService {
 		}
 
 		Utilisateur utilisateur = optUtilisateur.get();
-
+		System.err.println(utilisateur);
 		UserBuilder userBuilder = User.withUsername(utilisateur.getPseudo()).password(utilisateur.getMotDePasse())
 				.roles("Utilisateur");
 
@@ -40,6 +42,7 @@ public class TrocencheresUserDetailService implements UserDetailsService {
 			userBuilder.roles("Utilisateur", "ADMINISTRATEUR");
 		}
 		UserDetails user = userBuilder.build();
+		System.out.println(user);
 
 		return user;
 	}
