@@ -17,7 +17,7 @@
 <!-- Formulaire création de profil -->
     <div class="container">
         <h1 class="text-center mt-5">Modification du Profil</h1>
-        <form class="row g-3 needs-validation" novalidate>
+        <form class="row g-3 needs-validation" novalidate action="/modification" method="post">
             <div class="col-md-6">
                 <label for="validationCustom01" class="form-label">Pseudo :</label>
                 <input type="text" class="form-control" id="validationCustom01" name="pseudo" th:value="${utilisateur.pseudo}" required>
@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <label for="validationCustom06" class="form-label">Mot de passe :</label>
+                <label for="validationCustom06" class="form-label">Mot de passe actuel :</label>
                 <input type="text" class="form-control" id="validationCustom09" name="motDePasse" th:value="${utilisateur.motDePasse}" required>
                 <div class="invalid-feedback">
                     Please provide a valid password.
