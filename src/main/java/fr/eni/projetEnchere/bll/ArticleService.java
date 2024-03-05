@@ -8,6 +8,6 @@ import fr.eni.projetEnchere.bo.Categorie;
 public interface ArticleService {
 	List<Article> consulterArticles();
 
-	List<Categorie> consulterCategories();
+	
 
 }

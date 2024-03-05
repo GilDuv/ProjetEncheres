@@ -20,6 +20,8 @@
 			 
         <form action="/vendre" method="POST" th:object="${article}" class="row g-3 needs-validation" novalidate>
 			
+			<input type="hidden" th:name="noUtilisateur" th:value="${utilisateur.noUtilisateur}">
+			
             <div class="col-md-6">
                 <label for="idNomArticle" class="form-label">Article :</label>
                 <input type="text" class="form-control" id="idNomArticle" th:field="*{nomArticle}">
@@ -32,16 +34,60 @@
                 <div th:replace="~{fragment/fragment-error :: frag-error('description')}"></div>
             </div>
             
+            
             <div class="col-md-6">
-	                <label for="idCategorieArticle" class="form-label">Catégorie :</label>
-					<option class="form-control" th:each="a : ${article}" th:text="${a.categorieArticle.libelle}" th:value="${a.categorieArticle.noCategorie}"></option>
-	                <div th:replace="~{fragment/fragment-error :: frag-error('prenom')}"></div>
-            </div>
+	    		<label for="idCategorieArticle" class="form-label">Catégorie :</label>
+	    		<select id="idCategorieArticle" th:field="*{categorieArticle}">
+	   	 			<option class="form-control" th:each="c : ${categorieSession}" th:text="${c.libelle}" th:value="${c.noCategorie}"></option> 
+				</select>
+			</div>
+	
+            <div class="col-md-6">
+				<label for="imageUpload" class="form-label"> Photo de l'article :</label>
+   				 <input class="form-control" type="file" id="imageUpload" name="image" accept="image/*">
+			</div>
+            
+            
+            <div class="col-md-6">
+				<label for="idMiseAPrix" class="form-label">Mise à prix :</label> 
+				<input class="form-control" id="idMiseAPrix" type="number" required="required" th:field="*{miseAPrix}"/>
+			</div>
          
+        	<div class="col-md-6">
+				<label for="idDateDebutEncheres" class="form-label">Début de l'enchère :</label> 
+				<input class="form-control" id="idDateDebutEncheres" type="datetime-local" required="required" th:field="*{dateDebutEncheres}"/>
+			</div>
+			
+			<div class="col-md-6">
+				<label for="idDateFinEncheres" class="form-label">Début de l'enchère :</label> 
+				<input class="form-control" id="idDateFinEncheres" type="datetime-local" required="required" th:field="*{dateFinEncheres}"/>
+			</div>
+			
+			
+			<form action="/vendre" method="POST" th:object="${utilisateur}" class="row g-3 needs-validation" novalidate>
+			 <legend>Retrait</legend>
+			 <div class="col-md-6">
+                <label for="idRue" class="form-label">Rue :</label>
+                <input type="text" class="form-control" id="idRue" th:field="*{rue}" required>
+              </div>  
+              
+              <div class="col-md-6">
+                <label for="idCodePostal" class="form-label">Code Postal :</label>
+                <input type="text" class="form-control" id="idCodePostal"  th:field="*{codePostal}" required>
+              </div> 
+              
+              <div class="col-md-6">
+                <label for="idVille" class="form-label">Ville :</label>
+                <input type="text" class="form-control" id="idVille" th:field="*{ville}" required>
+              </div> 
+              
+            </form>  
+            
+			
             <!-- Include CSRF token -->
 			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
             <div class="col-12">
-                <button class="btn btn-primary me-2" type="submit">Créer</button>
+                <button class="btn btn-primary me-2" type="submit">Enregistrer</button>
                 <button class="btn btn-secondary" type="button">Annuler</button>
             </div>
         </form>

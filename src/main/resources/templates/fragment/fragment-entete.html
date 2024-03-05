@@ -29,11 +29,12 @@
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<p>Pseudo: <span th:text="${#authentication.name}"></span></p>
 								<li class="nav-item">
-									<form class="nav-item nav-link text-white" th:action="@{/vendre}" method="post">
+									<form class="nav-item nav-link text-white" th:action="@{/vendre}" method="get">
+										<input type="hidden" name="noUtilisateur" th:value="${#authentication.principal.noUtilisateur}" />
 										<input type="submit" value="Vendre un article" />
 									</form>
 									<form class="nav-item nav-link text-white" th:action="@{/modification}" method="get">
-										<input type="hidden" name="pseudo" th:value="${#authentication.name}" />
+										<input type="hidden" name="noUtilisateur" th:value="${#authentication.principal.noUtilisateur}" />
 										<input type="submit" value="Afficher profil" />
 									</form>
 									<form class="nav-item nav-link text-white" th:action="@{/logout}" method="post">

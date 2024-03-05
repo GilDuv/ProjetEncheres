@@ -128,12 +128,28 @@ public class Article {
 	public void setEncheres(List<Enchere> encheres) {
 		this.encheres = encheres;
 	}
-	public Categorie getCategorie() {
+
+	
+	public Categorie getCategorieArticle() {
 		return categorieArticle;
 	}
-	public void setCategorie(Categorie categorie) {
-		this.categorieArticle = categorie;
+
+
+	public void setCategorieArticle(Categorie categorieArticle) {
+		this.categorieArticle = categorieArticle;
 	}
+
+
+	public Retrait getLieuRetrait() {
+		return lieuRetrait;
+	}
+
+
+	public void setLieuRetrait(Retrait lieuRetrait) {
+		this.lieuRetrait = lieuRetrait;
+	}
+
+
 	public Retrait getRetrait() {
 		return lieuRetrait;
 	}

@@ -14,9 +14,10 @@
         <!-- Main -->
         <main>
             <div class="container">
+                
                 <h1 class="text-center mt-5">Liste des Enchères</h1>
 
-                <form class="d-flex my-4" th:object="${categorie}" role="search">
+           <!--    <form class="d-flex my-4" th:object="${categorie}" role="search">
                     <input class="form-control me-2" type="search" placeholder="Le nom de l'article contient" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Rechercher</button>
 
@@ -25,7 +26,7 @@
                     <option th:each="c : ${@articleServiceBean.consulterArticles()" th:value="${c.noCategorie}" th:text="${c.libelle}"></option>
         
                 </select>
-                </form>
+                </form> -->
 
                 <div class="row row-cols-1 row-cols-md-4 g-4">
                     <!-- Cards -->

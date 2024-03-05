@@ -15,21 +15,20 @@ import jakarta.validation.Valid;
 
 @Controller
 public class ProfilController {
-	
 
 	private UtilisateurService utilisateurService;
-	
+
 	public ProfilController(UtilisateurService utilisateurService) {
 		this.utilisateurService = utilisateurService;
 	}
-	
+
 	@GetMapping("/creation")
-	public String creationCompte(Model model) {		
+	public String creationCompte(Model model) {
 		model.addAttribute("utilisateurs", new Utilisateur());
-		
+
 		return "profilCreation";
 	}
-	
+
 	@PostMapping("/creation")
 	public String creationCompte(@Valid @ModelAttribute("utilisateurs") Utilisateur utilisateur,Model model,
 			BindingResult bindingResult) {
@@ -50,20 +49,21 @@ public class ProfilController {
 		}
 	}
 
+		
 
 	@GetMapping("/modification")
-    public String modificationCompte(@RequestParam("pseudo") String pseudo, Model model) {
-       Utilisateur u = this.utilisateurService.consulterUtilisateurParId(pseudo);
-       model.addAttribute("utilisateur",u);
-       return "profilModification";
+	public String modificationCompte(@RequestParam("noUtilisateur") Integer noUtilisateur, Model model) {
+		Utilisateur u = this.utilisateurService.consulterUtilisateurParId(noUtilisateur);
+		model.addAttribute("utilisateur", u);
+		System.out.println(noUtilisateur);
+		return "profilModification";
 	}
 
-	
 	@PostMapping("/modification")
-	public String modificationCompte(@ModelAttribute("utilisateur") Utilisateur utilisateur) {
-		System.out.println("utilisateur modifié :" + utilisateur);
-		this.utilisateurService.modifierUtilisateur(utilisateur);
+	public String modificationCompte(@ModelAttribute(name="utilisateurs") Utilisateur utilisateur) {
+		utilisateurService.modifierUtilisateur(utilisateur);
 		return "redirect:/";
 	}
 	
+
 }

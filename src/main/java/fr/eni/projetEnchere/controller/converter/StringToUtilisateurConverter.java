@@ -17,12 +17,18 @@ public class StringToUtilisateurConverter implements Converter<String, Utilisate
 	}
 
 	@Override
-	public Utilisateur convert(String noUtilisateur) {
-		int noUtilisateurEntier = Integer.parseInt(noUtilisateur);
-		Utilisateur utilisateur = this.utilisateurService.consulterUtilisateurParId(noUtilisateur);
-		
-		return utilisateur;
+	public Utilisateur convert(String source) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+//	@Override
+//	public Utilisateur convert(String noUtilisateur) {
+//		int noUtilisateurEntier = Integer.parseInt(noUtilisateur);
+//		Utilisateur utilisateur = this.utilisateurService.consulterUtilisateurParId(noUtilisateur);
+//		
+//		return utilisateur;
+//	}
 	
 	
 	

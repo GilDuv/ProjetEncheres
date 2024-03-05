@@ -33,18 +33,9 @@ public class TrocencheresUserDetailService implements UserDetailsService {
 			throw new UsernameNotFoundException("utilisateur non trouve : " + username);
 		}
 
-		Utilisateur utilisateur = optUtilisateur.get();
-		System.err.println(utilisateur);
-		UserBuilder userBuilder = User.withUsername(utilisateur.getPseudo()).password(utilisateur.getMotDePasse())
-				.roles("Utilisateur");
+		Utilisateur utilisateur = optUtilisateur.get();		
 
-		if (utilisateur.isAdministrateur()) {
-			userBuilder.roles("Utilisateur", "ADMINISTRATEUR");
-		}
-		UserDetails user = userBuilder.build();
-		System.out.println(user);
-
-		return user;
+		return utilisateur;
 	}
 
 }
