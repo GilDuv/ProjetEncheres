@@ -60,8 +60,22 @@ public class ProfilController {
 	}
 
 	@PostMapping("/modification")
-	public String modificationCompte(@ModelAttribute(name="utilisateurs") Utilisateur utilisateur) {
+	public String modificationCompte(@ModelAttribute(name="utilisateurs") Utilisateur utilisateur,
+			@RequestParam("motDePasse") String motDePasse,
+	        @RequestParam("nouveauMotDePasse") String nouveauMotDePasse,
+	        @RequestParam("confirmationMotDePasse") String confirmationMotDePasse) {
+		if (nouveauMotDePasse.equals(confirmationMotDePasse)) {
+            // Mettez à jour le mot de passe dans la base de données
+            utilisateur.setMotDePasse(nouveauMotDePasse);
+            utilisateurService.modifierUtilisateur(utilisateur);
+		}
 		utilisateurService.modifierUtilisateur(utilisateur);
+		return "redirect:/";
+	}
+	
+	@GetMapping("/supprimer")
+	public String supprimerUtilisateur(@RequestParam("noUtilisateur") Integer noUtilisateur) {
+		utilisateurService.supprimerUtilisateur(noUtilisateur);
 		return "redirect:/";
 	}
 	

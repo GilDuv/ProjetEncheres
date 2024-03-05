@@ -72,6 +72,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	}
 	
 	public void modifierUtilisateur(Utilisateur utilisateur) {
+		utilisateur.setMotDePasse(passwordEncoder.encode(utilisateur.getMotDePasse()));
 		utilisateurRepository.modifierProfil(utilisateur);
 	}
 
