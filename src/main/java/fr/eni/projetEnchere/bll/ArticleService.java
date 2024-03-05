@@ -8,6 +8,7 @@ import fr.eni.projetEnchere.bo.Categorie;
 public interface ArticleService {
 	List<Article> consulterArticles();
 
+	public Article creerArticle(Article article);
 	
 
 }

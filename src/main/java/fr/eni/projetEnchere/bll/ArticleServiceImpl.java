@@ -29,4 +29,10 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 
+	@Override
+	public Article creerArticle(Article article) {
+		return articleRepository.creerArticle(article);
+	}
+
+
 }

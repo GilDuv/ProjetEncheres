@@ -10,4 +10,5 @@ public interface CategorieRepository {
 	public List<Categorie> findAllCategorie();
 
 	public Optional<Categorie> findCategorieById(Integer noCategorie);
+	
 }

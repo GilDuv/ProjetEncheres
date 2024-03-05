@@ -6,7 +6,10 @@ import java.util.List;
  
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
  
 import fr.eni.projetEnchere.bo.Article;
@@ -40,4 +43,32 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 		};
 		return jdbcTemplate.query(sql, rowMapper);
 	}
+
+	@Override
+	public Article creerArticle(Article article) {
+
+		String sql="insert into articles (nom_article,description,prix_initial,date_debut_encheres,date_fin_encheres,no_utilisateur,no_categorie) VALUES (:nomArticle,:description,:miseAPrix,:dateDebutEncheres,:dateFinEncheres,:noUtilisateur,:noCategorie)";
+		
+		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+		parameterSource.addValue("nom_article", article.getNomArticle());
+		parameterSource.addValue("description", article.getDescription());
+		parameterSource.addValue("prix_initial", article.getMiseAPrix());
+		parameterSource.addValue("date_debut_encheres", article.getDateDebutEncheres());
+		parameterSource.addValue("date_fin_encheres", article.getDateFinEncheres());
+		parameterSource.addValue("no_utilisateur", article.getVendeur().getNoUtilisateur());
+		parameterSource.addValue("no_categorie", article.getCategorieArticle().getNoCategorie());
+		
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		
+		int nbrRow = namedJdbcTemplate.update(sql, parameterSource, keyHolder, new String[] {"no_article"});
+		article.setNoArticle(keyHolder.getKey().intValue());
+		//System.out.println(nbrRow);
+		//System.err.println("UtilisateurRepositoryImpl.creerProfil() fin");
+		return article;
+	}
+	
+
+	
+	
+	
 }

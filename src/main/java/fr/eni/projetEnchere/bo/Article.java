@@ -25,6 +25,32 @@ public class Article {
 	}
  
 	
+	
+	public Article(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
+			Integer miseAPrix, Utilisateur vendeur, Categorie categorieArticle) {
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.vendeur = vendeur;
+		this.categorieArticle = categorieArticle;
+	}
+
+
+
+	public Article(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
+			Integer miseAPrix) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+	}
+
+
+
 	public Article(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
 			Integer miseAPrix, Integer prixVente, String etatVente, Utilisateur acheteur, Utilisateur vendeur,
 			List<Enchere> encheres, Categorie categorie, Retrait retrait) {
@@ -157,6 +183,8 @@ public class Article {
 		this.lieuRetrait = retrait;
 	}
 
+	
+	
 
 	@Override
 	public int hashCode() {
