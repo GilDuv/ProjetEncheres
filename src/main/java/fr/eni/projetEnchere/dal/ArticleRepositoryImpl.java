@@ -29,7 +29,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 		this.jdbcTemplate = namedJdbcTemplate.getJdbcTemplate();
 	}
  
-	@Override
+	@Override  
 	public List<Article> findAllArticles(){
 		String sql = "select no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente FROM ARTICLES";
 		RowMapper<Article> rowMapper = new RowMapper<>() {
@@ -49,19 +49,10 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 	}
 
 	
-	
-	
-	
-	@Override
-<<<<<<< HEAD
-
-	public Article creerArticle(Article article) {
-
-=======
-	public Article creerArticle(Article article) {		
+	public Article creerArticle(Article article,Utilisateur utilisateur) {		
 		
->>>>>>> amelia
-		String sql="insert into articles (nom_article,description,prix_initial,date_debut_encheres,date_fin_encheres,no_utilisateur,no_categorie) VALUES (:nomArticle,:description,:miseAPrix,:dateDebutEncheres,:dateFinEncheres,:noUtilisateur,:noCategorie)";
+		article.getVendeur().setNoUtilisateur(utilisateur.getNoUtilisateur());
+		String sql="insert into articles (nom_article,description,prix_initial,date_debut_encheres,date_fin_encheres,no_utilisateur,no_categorie) VALUES (:nom_article,:description,:prix_initial,:date_debut_encheres,:date_fin_encheres,:no_utilisateur,:no_categorie) ";
 		
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		parameterSource.addValue("nom_article", article.getNomArticle());
@@ -129,6 +120,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 	    }
 	    return optArticle;
 	}
+
 
 
 }

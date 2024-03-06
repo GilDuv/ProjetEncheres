@@ -67,9 +67,9 @@ public class Utilisateur implements UserDetails {
 	
 	private List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
 	
-	List<Article> articlesVendus;
-	List<Article> articlesAchetés;
-	List<Enchere> encheres;
+	private List<Article> articlesVendus;
+	private List<Article> articlesAchetés;
+	private List<Enchere> encheres;
 	
 	//Constructeurs
 	public Utilisateur() {

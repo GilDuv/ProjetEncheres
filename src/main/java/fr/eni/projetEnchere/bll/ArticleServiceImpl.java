@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import fr.eni.projetEnchere.bo.Article;
 import fr.eni.projetEnchere.bo.Categorie;
+import fr.eni.projetEnchere.bo.Utilisateur;
 import fr.eni.projetEnchere.dal.ArticleRepository;
 
 @Service
@@ -35,9 +36,9 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public Article creerArticle(Article article) {
+	public Article creerArticle(Article article,Utilisateur utilisateur) {
 		// TODO Auto-generated method stub
-		return articleRepository.creerArticle(article);
+		return articleRepository.creerArticle(article, utilisateur);
 	}
 
 

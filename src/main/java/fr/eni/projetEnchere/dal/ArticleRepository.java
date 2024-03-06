@@ -5,12 +5,13 @@ import java.util.Optional;
 
 import fr.eni.projetEnchere.bo.Article;
 import fr.eni.projetEnchere.bo.Categorie;
+import fr.eni.projetEnchere.bo.Utilisateur;
 
 public interface ArticleRepository {
 
 	List<Article> findAllArticles();
 	
-	Article creerArticle(Article article);
+	public Article creerArticle(Article article,Utilisateur utilisateur);
 
 	Optional<Article> findArticleById(Integer id);
 
