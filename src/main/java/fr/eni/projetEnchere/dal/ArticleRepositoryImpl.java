@@ -31,10 +31,12 @@ public class ArticleRepositoryImpl implements ArticleRepository {
  
 	@Override  
 	public List<Article> findAllArticles(){
-		String sql = "select no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente FROM ARTICLES";
+		String sql = "SELECT a.*, u.pseudo FROM ARTICLES a INNER JOIN UTILISATEURS u ON a.no_utilisateur = u.no_utilisateur";
 		RowMapper<Article> rowMapper = new RowMapper<>() {
 			public Article mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Article article = new Article();
+				Utilisateur vendeur = new Utilisateur();
+				
 				article.setNoArticle(rs.getInt("no_article"));
 				article.setNomArticle(rs.getString("nom_article"));
 				article.setDescription(rs.getString("description"));
@@ -42,6 +44,12 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 				article.setDateFinEncheres(rs.getDate("date_fin_encheres"));
 				article.setMiseAPrix(rs.getInt("prix_initial"));
 				article.setPrixVente(rs.getInt("prix_vente"));
+				
+		        // Set du vendeur
+		        vendeur.setPseudo(rs.getString("pseudo"));
+		        article.setVendeur(vendeur);
+				
+				
 				return article;
 			}
 		};
@@ -63,6 +71,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 		parameterSource.addValue("no_utilisateur", article.getVendeur().getNoUtilisateur());
 		parameterSource.addValue("no_categorie", article.getCategorieArticle().getNoCategorie());
 		
+
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
 		int nbrRow = namedJdbcTemplate.update(sql, parameterSource, keyHolder, new String[] {"no_article"});
@@ -78,7 +87,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 	
 
 	public Optional<Article> findArticleById(Integer noArticle) {
-	    String sql = "SELECT a.*, u.pseudo, c.libelle FROM ARTICLES a INNER JOIN UTILISATEURS u ON a.no_utilisateur = u.no_utilisateur INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie  WHERE a.no_article = ?";
+	    String sql = "SELECT a.*, c.libelle, u.pseudo FROM ARTICLES a INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie INNER JOIN UTILISATEURS u ON a.no_utilisateur = u.no_utilisateur WHERE a.no_article = ?";
 	    System.err.println(sql);
 
 	    Optional<Article> optArticle = null;

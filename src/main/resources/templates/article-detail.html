@@ -53,7 +53,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="idCategorie" class="form-label">Catégorie :</label>
-                   <!--<input id="idCategorie" type="text" class="form-control" th:value="${article.libelle}" />-->
+                   <input id="idCategorie" type="text" class="form-control" th:value="${article.categorieArticle.libelle}" />
                 </div>
                 <div class="mb-3">
                     <label for="idPrix" class="form-label">Meilleure Offre :</label>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="idVendeur" class="form-label">Vendeur :</label>
-                   <!--<input id="idVendeur" type="text" class="form-control" th:value="${article.pseudo}" />-->
+                   <input id="idVendeur" type="text" class="form-control" th:value="${article.vendeur.pseudo}" />
                 </div>
                 <div class="mb-3">
                     <label for="idDescription" class="form-label">Description :</label>

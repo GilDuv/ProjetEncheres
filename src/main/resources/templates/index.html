@@ -17,21 +17,6 @@
                 
                 <h1 class="text-center mt-5">Liste des Enchères</h1>
 
-
-           <!--    <form class="d-flex my-4" th:object="${categorie}" role="search">
-
-                    <input class="form-control me-2" type="search" placeholder="Le nom de l'article contient" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Rechercher</button>
-                </form>
-
-				<!--<form class="d-flex my-4" th:object="${articles}" method="get"></form>
-                <select class="form-select mb-4" th:field="*{categorie}" aria-label="Default select example">
-                    <option selected>Toutes les catégories</option>
-                    <option th:each="c : ${categories}" th:value="${c.noCategorie}" th:text="${c.libelle}"></option>
-                </select>
-
-                </form>-->
-                
                 <table class="table">
 				    <thead>
 				        <tr>
@@ -47,13 +32,21 @@
 				            <td th:text="${article.nomArticle}">Nom de l'article</td>
 				            <td th:text="${article.prixVente}">Prix</td>
 				            <td th:text="${article.dateFinEncheres}">Fin de l'enchère</td>
-				            <!--<td th:text="${article.pseudo}">Vendeur</td>-->
+				            <td th:text="${article.vendeur.pseudo}">Vendeur</td>
 				            <td>
 				                <a th:href="@{'/details/' + ${article.noArticle}}" class="btn btn-primary">Détails</a>
 				            </td>
 				        </tr>
 				    </tbody>
 				</table>
+
+
+
+                <div class="row row-cols-1 row-cols-md-4 g-4">
+                    <!-- Cards -->
+                    <!-- You can add your card elements here -->
+                </div>
+
             </div>
             
             <div class="row mt-4 row-cols-1 row-cols-md-4 g-4">
@@ -107,6 +100,7 @@
             </div>
 
         </main>
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
