@@ -24,7 +24,7 @@ public class AffichageControler {
 	@GetMapping("/")
 		public String affichageAccueil(Model model) {
 		List<Article> article = this.articleService.consulterArticles();
-		System.out.println(article);
+		
 		model.addAttribute("article", article);
 			return "index";
 		}

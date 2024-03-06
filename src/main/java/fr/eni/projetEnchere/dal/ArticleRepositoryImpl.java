@@ -3,13 +3,17 @@ package fr.eni.projetEnchere.dal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
- 
+import java.util.Optional;
+
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
  
 import fr.eni.projetEnchere.bo.Article;
+import fr.eni.projetEnchere.bo.Categorie;
+import fr.eni.projetEnchere.bo.Utilisateur;
  
 @Repository
 public class ArticleRepositoryImpl implements ArticleRepository {
@@ -40,4 +44,51 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 		};
 		return jdbcTemplate.query(sql, rowMapper);
 	}
+
+	@Override
+	public Optional<Article> findArticleById(Integer noArticle) {
+	    String sql = "SELECT a.*, u.pseudo, c.libelle FROM ARTICLES a INNER JOIN UTILISATEURS u ON a.no_utilisateur = u.no_utilisateur INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie  WHERE a.no_article = ?";
+	    System.err.println(sql);
+
+	    Optional<Article> optArticle = null;
+
+	    RowMapper<Article> rowMapper = new RowMapper<Article>() {
+	        @Override
+	        public Article mapRow(ResultSet rs, int rowNum) throws SQLException {
+	            Article article = new Article();
+	            Utilisateur vendeur = new Utilisateur();
+	            Categorie categorie = new Categorie();
+
+	            article.setNoArticle(rs.getInt("no_article"));
+	            article.setNomArticle(rs.getString("nom_article"));
+	            article.setDescription(rs.getString("description"));
+	            article.setDateDebutEncheres(rs.getDate("date_debut_encheres"));
+	            article.setDateFinEncheres(rs.getDate("date_fin_encheres"));
+	            article.setMiseAPrix(rs.getInt("prix_initial"));
+	            article.setPrixVente(rs.getInt("prix_vente"));
+
+	            // Set du vendeur
+	            vendeur.setPseudo(rs.getString("pseudo"));
+	            article.setVendeur(vendeur);
+
+	            // Set de la categorie
+	            categorie.setLibelle(rs.getString("libelle"));
+	            article.setCategorieArticle(categorie);
+
+	            return article;
+	        }
+	    };
+
+	    try {
+	        Article article = jdbcTemplate.queryForObject(sql, rowMapper, noArticle);
+	        System.out.println(article);
+	        optArticle = Optional.of(article);
+	    } catch (EmptyResultDataAccessException exc) {
+	    
+	        optArticle = Optional.empty();
+	    }
+	    return optArticle;
+	}
+
+
 }

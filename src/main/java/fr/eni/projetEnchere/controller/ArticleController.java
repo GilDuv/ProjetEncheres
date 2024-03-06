@@ -1,11 +1,13 @@
 package fr.eni.projetEnchere.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -55,15 +57,21 @@ public class ArticleController {
 			return this.categorieService.consulterCategorie();
 		}
 	
-	
-		@GetMapping("/Liste")
-		public String afficherArticle(Model model) {
-			List<Article> article = this.articleService.consulterArticles();
-			System.out.println(article);
-			model.addAttribute("article", article);
-			return "article-liste";
+		
+		//Détails Articles
+		@GetMapping("/details/{noArticle}")
+		public String afficherArticle(@PathVariable("noArticle") Integer noArticle, Model model) {
+		    Optional<Article> optionalArticle = this.articleService.getArticleById(noArticle);
+		    if (optionalArticle.isPresent()) {
+		        Article article = optionalArticle.get();
+		        System.err.println(article);
+		        model.addAttribute("article", article);
+		    }
+		    
+		    return "article-detail";
 		}
+
+
 	
 	}
-
 

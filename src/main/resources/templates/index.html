@@ -16,100 +16,30 @@
             <div class="container">
                 
                 <h1 class="text-center mt-5">Liste des Enchères</h1>
-
-
-           <!--    <form class="d-flex my-4" th:object="${categorie}" role="search">
-
-                    <input class="form-control me-2" type="search" placeholder="Le nom de l'article contient" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Rechercher</button>
-                </form>
-
-				<!--<form class="d-flex my-4" th:object="${articles}" method="get"></form>
-                <select class="form-select mb-4" th:field="*{categorie}" aria-label="Default select example">
-                    <option selected>Toutes les catégories</option>
-                    <option th:each="c : ${categories}" th:value="${c.noCategorie}" th:text="${c.libelle}"></option>
-                </select>
-
-                </form>-->
                 
-                <table>
+                <table class="table">
+				    <thead>
+				        <tr>
+				            <th>Nom de l'article</th>
+				            <th>Prix</th>
+				            <th>Fin de l'enchère</th>
+				            <th>Vendeur</th>
+				            <th>Actions</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				        <tr th:each="article : ${article}">
+				            <td th:text="${article.nomArticle}">Nom de l'article</td>
+				            <td th:text="${article.prixVente}">Prix</td>
+				            <td th:text="${article.dateFinEncheres}">Fin de l'enchère</td>
+				            <!--<td th:text="${article.pseudo}">Vendeur</td>-->
+				            <td>
+				                <a th:href="@{'/details/' + ${article.noArticle}}" class="btn btn-primary">Détails</a>
+				            </td>
+				        </tr>
+				    </tbody>
+				</table>
 
-					<tbody>
-						<!-- th:each : permet de boucler sur tous les Articles et d'afficher autant de tr que d'articles -->
-						<!-- chaque article sera ici placer dans une nouvelle variable a -->
-						<tr th:each="a : ${article}">
-							<td th:text="${a.nomArticle}"></td>
-							<!--<td th:text="${f.annee}"></td>
-							<td th:text="${f.titre}"></td>
-							<td th:text="${f.realisateur.prenom + ' ' + f.realisateur.nom}"></td>
-							<td><a th:href="@{/films/detail(id=${f.id})}">Détail</a>
-								<a th:href="@{/avis/creer(idFilm=${f.id})}">Avis</a>
-							
-							</td>-->
-						</tr>
-					</tbody>
-			
-					</table>
-
-
-
-                <div class="row row-cols-1 row-cols-md-4 g-4">
-                    <!-- Cards -->
-                    <!-- You can add your card elements here -->
-                </div>
-            </div>
-            
-            <div class="row mt-4 row-cols-1 row-cols-md-4 g-4">
-                <div class="col">
-                    <div class="card text-bg-primary">
-                    <img src="/assets/images/PC-Portable-Gaming.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Pc Portable Gaming - 3 écrans</h5>
-                            <p class="card-text">Prix : 1350 points</p>
-                            <p class="card-text">Fin de l'enchère : 22/06/2024</p>
-                            <p class="card-text">Vendeur : Fake Asus</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card text-bg-primary">
-                    <img src="/assets/images/bouclier-de-brennus.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Bouclier de Brennus</h5>
-                            <p class="card-text">Prix : 15 350 points</p>
-                            <p class="card-text">Fin de l'enchère : 01/04/2024</p>
-                            <p class="card-text">Vendeur : Cats Eyes</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card text-bg-primary">
-                    <img src="/assets/images/pop_pikachu.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Funko Pop - Pika vénère</h5>
-                            <p class="card-text">Prix : 350 points</p>
-                            <p class="card-text">Fin de l'enchère : 10/05/2024</p>
-                            <p class="card-text">Vendeur : La Team Rocket</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card text-bg-primary">
-                    <img src="/assets/images/table-bois-salle-a-manger-hemisphere-sud.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Table salle à manger en bois véritable</h5>
-                            <p class="card-text">Prix : 2 350 points</p>
-                            <p class="card-text">Fin de l'enchère : 18/03/2024</p>
-                            <p class="card-text">Vendeur : Rintintin</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
