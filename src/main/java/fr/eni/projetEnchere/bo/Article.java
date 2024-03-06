@@ -4,12 +4,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Article {
 
 	private Integer noArticle;
 	private String nomArticle;
 	private String description;
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private Date dateDebutEncheres;
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private Date dateFinEncheres;
 	private Integer miseAPrix;
 	private Integer prixVente;

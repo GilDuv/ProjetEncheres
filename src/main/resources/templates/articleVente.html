@@ -65,7 +65,7 @@
 			</div>
 			
 			
-			<form action="/vendre" method="POST" th:object="${utilisateur}" class="retrait" novalidate>
+			<div action="/vendre" method="POST" th:object="${utilisateur}" class="retrait" novalidate>
 			 <legend>Retrait</legend>
 			 <div class="col-md-6">
                 <label for="idRue" class="form-label">Rue :</label>
@@ -82,7 +82,7 @@
                 <input type="text" class="form-control" id="idVille" th:field="*{ville}" required>
               </div> 
               
-            </form>  
+            </div>  
             
 			
             <!-- Include CSRF token -->

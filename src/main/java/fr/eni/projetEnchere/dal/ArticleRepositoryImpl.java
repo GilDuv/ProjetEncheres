@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
- 
+
 import fr.eni.projetEnchere.bo.Article;
 import fr.eni.projetEnchere.bo.Categorie;
 import fr.eni.projetEnchere.bo.Utilisateur;
@@ -48,10 +48,19 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 		return jdbcTemplate.query(sql, rowMapper);
 	}
 
+	
+	
+	
+	
 	@Override
+<<<<<<< HEAD
 
 	public Article creerArticle(Article article) {
 
+=======
+	public Article creerArticle(Article article) {		
+		
+>>>>>>> amelia
 		String sql="insert into articles (nom_article,description,prix_initial,date_debut_encheres,date_fin_encheres,no_utilisateur,no_categorie) VALUES (:nomArticle,:description,:miseAPrix,:dateDebutEncheres,:dateFinEncheres,:noUtilisateur,:noCategorie)";
 		
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();

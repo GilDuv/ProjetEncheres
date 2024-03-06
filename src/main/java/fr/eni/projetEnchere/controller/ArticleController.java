@@ -38,6 +38,7 @@ public class ArticleController {
 
 		@GetMapping("/vendre")
 		public String vendreArticleForm(@RequestParam("noUtilisateur") Integer noUtilisateur, Model model) {		
+			
 			model.addAttribute("article", new Article());
 			model.addAttribute("utilisateur", this.utilisateurService.consulterUtilisateurParId(noUtilisateur));
 			return "articleVente";
