@@ -142,7 +142,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 	
 	@Override
 	public Utilisateur creerProfil(Utilisateur utilisateur) {
-		//System.out.println("UtilisateurRepositoryImpl.creerProfil()");
+		System.out.println("UtilisateurRepositoryImpl.creerProfil()");
 		String sql="insert into utilisateurs (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe ,credit,administrateur) values (:pseudo,:nom,:prenom,:email,:telephone,:rue,:code_postal,:ville,:mot_de_passe ,:credit,:administrateur)";
 		
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
@@ -162,8 +162,8 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 		
 		int nbrRow = namedParameterJdbcTemplate.update(sql, parameterSource, keyHolder, new String[] {"no_utilisateur"});
 		utilisateur.setNoUtilisateur(keyHolder.getKey().intValue());
-		//System.out.println(nbrRow);
-		//System.err.println("UtilisateurRepositoryImpl.creerProfil() fin");
+		System.out.println(nbrRow);
+		System.err.println("UtilisateurRepositoryImpl.creerProfil() fin");
 		return utilisateur;
 	}
 
