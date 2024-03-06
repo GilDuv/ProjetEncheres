@@ -2,6 +2,7 @@ package fr.eni.projetEnchere.bll;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,10 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleRepository.findAllArticles();
 	}
 
+	
+	public Optional<Article> getArticleById(Integer id) {
+	    return articleRepository.findArticleById(id);
+	}
 
 	@Override
 	public Article creerArticle(Article article) {

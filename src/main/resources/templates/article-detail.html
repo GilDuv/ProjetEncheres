@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" data-th-href="@{/assets/css/style.css}">
+    <title>Détails de l'article</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+2OrX6o6pBMz5XyY6Dgi1OdX1G7fAWLa/8gK+6U" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+	<div th:replace="~{fragment/fragment-entete :: frag-entete}"></div>
+<div class="container">
+	
+    <div class="card mx-auto" style="max-width: 600px;">
+        <div class="card-header text-center">
+            <h1 class="mb-0">Détails de l'article</h1>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="mb-3">
+                    <label for="idNomArticle" class="form-label">Nom de l'article :</label>
+                    <input id="idNomArticle" type="text" class="form-control" th:value="${article.nomArticle}" />
+                </div>
+                <div class="mb-3">
+                    <label for="idCategorie" class="form-label">Catégorie :</label>
+                   <!--<input id="idCategorie" type="text" class="form-control" th:value="${article.libelle}" />-->
+                </div>
+                <div class="mb-3">
+                    <label for="idPrix" class="form-label">Meilleure Offre :</label>
+                    <input id="idPrix" type="text" class="form-control" th:value="${article.prixVente}" />
+                </div>
+                <div class="mb-3">
+                    <label for="idMiseAPrix" class="form-label">Mise à prix :</label>
+                    <input id="idMiseAPrix" type="text" class="form-control" th:value="${article.miseAPrix}" />
+                </div>
+                <div class="mb-3">
+                    <label for="idFinEnchere" class="form-label">Fin de l'enchère :</label>
+                    <input id="idFinEnchere" type="text" class="form-control" th:value="${article.dateFinEncheres}" />
+                </div>
+                <div class="mb-3">
+                    <label for="idVendeur" class="form-label">Vendeur :</label>
+                   <!--<input id="idVendeur" type="text" class="form-control" th:value="${article.pseudo}" />-->
+                </div>
+                <div class="mb-3">
+                    <label for="idDescription" class="form-label">Description :</label>
+                    <textarea id="idDescription" class="form-control" cols="60" rows="3" th:text="${article.description}" ></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-KyZWxNojGGClvKoMSmZmTQuoNjw5vcWrK/KL6QfiqKvQAGUp/+OE1HJsswoy2t/J" crossorigin="anonymous"></script>
+</body>
+</html>
