@@ -1,6 +1,7 @@
 package fr.eni.projetEnchere.controller;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,9 +18,13 @@ import jakarta.validation.Valid;
 public class ProfilController {
 
 	private UtilisateurService utilisateurService;
+	
+	private PasswordEncoder passwordEncoder;
 
-	public ProfilController(UtilisateurService utilisateurService) {
+
+	public ProfilController(UtilisateurService utilisateurService, PasswordEncoder passwordEncoder) {
 		this.utilisateurService = utilisateurService;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	@GetMapping("/creation")
@@ -60,8 +65,22 @@ public class ProfilController {
 	}
 
 	@PostMapping("/modification")
-	public String modificationCompte(@ModelAttribute(name="utilisateurs") Utilisateur utilisateur) {
+	public String modificationCompte(@ModelAttribute(name="utilisateurs") Utilisateur utilisateur,
+	        @RequestParam("nouveauMotDePasse") String nouveauMotDePasse,
+	        @RequestParam("confirmationMotDePasse") String confirmationMotDePasse) {
+		if (nouveauMotDePasse.equals(confirmationMotDePasse)) {
+            // Mettez à jour le mot de passe dans la base de données
+            utilisateur.setMotDePasse(passwordEncoder.encode(nouveauMotDePasse));
+            utilisateurService.modifierUtilisateur(utilisateur);
+		}else {
 		utilisateurService.modifierUtilisateur(utilisateur);
+		}
+		return "redirect:/";
+	}
+	
+	@GetMapping("/supprimer")
+	public String supprimerUtilisateur(@RequestParam("noUtilisateur") Integer noUtilisateur) {
+		utilisateurService.supprimerUtilisateur(noUtilisateur);
 		return "redirect:/";
 	}
 	

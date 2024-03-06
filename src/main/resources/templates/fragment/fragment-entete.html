@@ -19,9 +19,8 @@
 					<div sec:authorize="not isAuthenticated()">
 						<li class="nav-item"><a class="nav-link text-white" th:href="@{connexion}">Se connecter</a></li>
 					</div>
-
 					<div sec:authorize="isAuthenticated()">
-						<div class="nav-item dropdown">
+						<div class="nav-item dropdown" th:if="${#authentication.principal ne null}">
 							<a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button"
 								data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Profil
@@ -30,16 +29,23 @@
 								<p>Pseudo: <span th:text="${#authentication.name}"></span></p>
 								<li class="nav-item">
 									<form class="nav-item nav-link text-white" th:action="@{/vendre}" method="get">
-										<input type="hidden" name="noUtilisateur" th:value="${#authentication.principal.noUtilisateur}" />
+										<input type="hidden" name="noUtilisateur"
+											th:value="${#authentication.principal.noUtilisateur}" />
 										<input type="submit" value="Vendre un article" />
 									</form>
-									<form class="nav-item nav-link text-white" th:action="@{/modification}" method="get">
-										<input type="hidden" name="noUtilisateur" th:value="${#authentication.principal.noUtilisateur}" />
-										<input type="submit" value="Afficher profil" />
-									</form>
-									<form class="nav-item nav-link text-white" th:action="@{/logout}" method="post">
-										<input type="submit" value="Se déconnecter" />
-									</form>
+									<form class="nav-item nav-link text-white" th:action="@{/modification}"
+										method="get">
+										<input type="hidden" name="noUtilisateur"
+											th:value="${#authentication.principal.noUtilisateur}" />
+										<form class="nav-item nav-link text-white" th:action="@{/modification}"
+											method="get">
+											<input type="hidden" name="noUtilisateur"
+												th:value="${#authentication.principal.noUtilisateur}" />
+											<input type="submit" value="Afficher profil" />
+										</form>
+										<form class="nav-item nav-link text-white" th:action="@{/logout}" method="post">
+											<input type="submit" value="Se déconnecter" />
+										</form>
 								</li>
 							</div>
 						</div>

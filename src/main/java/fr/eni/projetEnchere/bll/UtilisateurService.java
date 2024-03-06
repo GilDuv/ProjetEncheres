@@ -19,5 +19,4 @@ public interface UtilisateurService {
 	public void modifierUtilisateur(Utilisateur utilisateur);
 
 	
-	
 }

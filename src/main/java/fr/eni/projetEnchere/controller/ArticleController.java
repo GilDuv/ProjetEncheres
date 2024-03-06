@@ -43,9 +43,9 @@ public class ArticleController {
 		
 		@PostMapping("/vendre")
 		public String vendreArticleSubmit(@ModelAttribute("article") Article article) {		
-			
-			
-			return "articleVente";
+			this.articleService.creerArticle(article);
+			System.out.println(article);
+			return "redirect:/";
 		}
 		
 		
