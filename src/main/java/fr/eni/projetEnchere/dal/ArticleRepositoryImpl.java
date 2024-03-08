@@ -49,8 +49,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 		        // Set du vendeur
 		        vendeur.setPseudo(rs.getString("pseudo"));
 		        article.setVendeur(vendeur);
-				
-				
+		        
 				return article;
 			}
 		};
@@ -83,12 +82,8 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 	}
 	
 
-	
-	
-	
-
 	public Optional<Article> findArticleById(Integer noArticle) {
-	    String sql = "SELECT a.*, c.libelle, u.pseudo FROM ARTICLES a INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie INNER JOIN UTILISATEURS u ON a.no_utilisateur = u.no_utilisateur WHERE a.no_article = ?";
+	    String sql = "SELECT a.*, c.libelle, u.pseudo, u.rue, u.code_postal, u.ville FROM ARTICLES a INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie INNER JOIN UTILISATEURS u ON a.no_utilisateur = u.no_utilisateur WHERE a.no_article = ?";
 	    System.err.println(sql);
 
 	    Optional<Article> optArticle = null;
@@ -111,6 +106,19 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 	            // Set du vendeur
 	            vendeur.setPseudo(rs.getString("pseudo"));
 	            article.setVendeur(vendeur);
+	            
+	            // Set de la rue
+		        vendeur.setRue(rs.getString("rue"));
+		        article.setVendeur(vendeur);
+		        
+		        // Set du code postal
+		        vendeur.setCodePostal(rs.getString("code_postal"));
+		        article.setVendeur(vendeur);
+		        
+		        // Set de la ville
+		        vendeur.setVille(rs.getString("ville"));
+		        article.setVendeur(vendeur);
+		        
 
 	            // Set de la categorie
 	            categorie.setLibelle(rs.getString("libelle"));

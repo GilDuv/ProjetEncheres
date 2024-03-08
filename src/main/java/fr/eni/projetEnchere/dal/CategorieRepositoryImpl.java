@@ -78,6 +78,7 @@ public class CategorieRepositoryImpl implements CategorieRepository {
 		return optCategorie;
 	}
 
+
 	
 	
 }

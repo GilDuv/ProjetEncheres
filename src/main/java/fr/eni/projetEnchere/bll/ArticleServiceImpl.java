@@ -19,7 +19,7 @@ public class ArticleServiceImpl implements ArticleService {
 	//Couplage faible
 	private ArticleRepository articleRepository;
 	
-	//Constructeur
+	//Constructeur Couplage faible
 	public ArticleServiceImpl (ArticleRepository articleRepository) {
 		this.articleRepository = articleRepository;		
 	}
@@ -37,7 +37,6 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public Article creerArticle(Article article,Utilisateur utilisateur) {
-		// TODO Auto-generated method stub
 		return articleRepository.creerArticle(article, utilisateur);
 	}
 

@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.eni.projetEnchere.bll.ArticleService;
 import fr.eni.projetEnchere.bll.CategorieService;
+
 import fr.eni.projetEnchere.bll.UtilisateurService;
 import fr.eni.projetEnchere.bo.Article;
+import fr.eni.projetEnchere.bo.Categorie;
 import fr.eni.projetEnchere.bo.Utilisateur;
+
 
 @Controller
 public class AffichageControler {
@@ -20,6 +23,7 @@ public class AffichageControler {
 	private ArticleService articleService;
 	private UtilisateurService utilisateurService;
 	private CategorieService categorieService;
+
 
 	
 	//Controller Service
@@ -49,6 +53,7 @@ public class AffichageControler {
 		model.addAttribute("categories", categorieService.consulterCategorie());
 		
 		List<Article> article = this.articleService.consulterArticles();
+		List<Categorie> categorieSession = categorieService.consulterCategorie();
 		
 		if(query!=null || category!=null ) {
 			article = articleService.search(query, category, type);
@@ -56,7 +61,11 @@ public class AffichageControler {
 		
 		
 		model.addAttribute("article", article);
+		model.addAttribute("categorieSession", categorieSession);
 			return "index";
 		}
+
+
+
 
 }
