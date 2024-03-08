@@ -197,7 +197,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository{
 	@Override
 	public void supprimerProfil(Integer idUtilisateur) {
 
-		String sql = "delete from utilisateurs where no_utilisateur=?";
+		String sql = "delete from utilisateurs where no_utilisateur=? ";
 		int nbLignes = jdbcTemplate.update(sql,idUtilisateur);
 		if (nbLignes == 0) {
 			throw new UtilisateurNotFoundRuntimeException();

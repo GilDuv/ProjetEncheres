@@ -1,7 +1,10 @@
 <!-- Header -->
 <header th:fragment="frag-entete">
-	<div class="header-title text-center">Eni - Enchères</div>
-
+	
+	<div class="header-title text-center">
+        <a href="/"><img src="/assets/images/eni.png" alt="Logo" class="logo-image"></a>
+        <h1>Eni - Enchères</h1>
+    </div>
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<div class="container">
@@ -26,7 +29,7 @@
 								Profil
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<p>Pseudo: <span th:text="${#authentication.name}"></span></p>
+								<p>Pseudo : <span th:text="${#authentication.name}"></span></p>
 								<li class="nav-item">
 									<form class="nav-item nav-link text-white" th:action="@{/vendre}" method="get">
 										<input type="hidden" name="noUtilisateur"

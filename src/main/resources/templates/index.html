@@ -15,90 +15,114 @@
         <main>
             <div class="container">
                 
+				
                 <h1 class="text-center mt-5">Liste des Enchères</h1>
 
-                <table class="table">
-				    <thead>
-				        <tr>
-				            <th>Nom de l'article</th>
-				            <th>Prix</th>
-				            <th>Fin de l'enchère</th>
-				            <th>Vendeur</th>
-				            <th>Actions</th>
-				        </tr>
-				    </thead>
-				    <tbody>
-				        <tr th:each="article : ${article}">
-				            <td th:text="${article.nomArticle}">Nom de l'article</td>
-				            <td th:text="${article.prixVente}">Prix</td>
-				            <td th:text="${article.dateFinEncheres}">Fin de l'enchère</td>
-				            <td th:text="${article.vendeur.pseudo}">Vendeur</td>
-				            <td>
-				                <a th:href="@{'/details/' + ${article.noArticle}}" class="btn btn-primary">Détails</a>
-				            </td>
-				        </tr>
-				    </tbody>
-				</table>
+<form action="" method="get" >
+				<div class="row">
+					<div class="col-6">
+						<h4 class="mb-3">Filtres:</h4>
+						<div class="input-group flex-nowrap mb-3">
+						  <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-magnifying-glass"></i></span>
+						  <input type="search" class="form-control" name="q" placeholder="Le nom de l'article contient">
+						</div>	
+						<div class="mb-3">
+							<label class="form-label">Catégorie</label>
+							<select class="form-select" name="category" aria-label="Default select example">
+							  <option value="0" >Choisir une catégorie</option>
+							  <option th:each="c:${categories}" 
+							  th:value="${c.noCategorie}"
+							  th:text="${c.libelle}"
+							  ></option>
+							</select>
+						</div>
+						<!--  -->
+		  				<div class="row">
+		  					<div class="col-6">
+		  						<div class="form-check">
+								  <input class="form-check-input" checked="true" type="radio" value="achats" onchange="change(event)" name="type" id="achats">
+								  <label class="form-check-label" for="achats" >
+								    Achats
+								  </label>
+								</div>
+								<div class="container ck-achats">
+									<div class="form-check">
+									  <input class="form-check-input" type="checkbox" name="achat" value="eo" id="eo">
+									  <label class="form-check-label" for="eo">
+									    Enchères ouvertes
+									  </label>
+									</div>
+									<div class="form-check">
+									  <input class="form-check-input" type="checkbox" name="achat"  value="meec" id="meec">
+									  <label class="form-check-label" for="meec">
+									    Mes enchères en cours
+									  </label>
+									</div>
+									<div class="form-check">
+									  <input class="form-check-input" type="checkbox" name="achat"  value="mer" id="mer">
+									  <label class="form-check-label" for="mer">
+									    Mes enchères remportées
+									  </label>
+									</div>							
+								</div>						
+		  					</div>
+		  					<div class="col-6">
+		  						<div class="form-check">
+								  <input class="form-check-input" type="radio" name="type" value="mes vente" id="mes_ventes" onchange="change(event)">
+								  <label class="form-check-label" for="mes_ventes">
+								    Mes ventes
+								  </label>
+								</div> 
+								<div class="container ck-ventes">
+									<div class="form-check">
+									  <input class="form-check-input" disabled type="checkbox" name="vente" value="mvec" id="mvec">
+									  <label class="form-check-label" for="mvec">
+									    Mes vente en cours
+									  </label>
+									</div>
+									<div class="form-check">
+									  <input class="form-check-input" disabled type="checkbox" name="vente" value="vnd" id="vnd">
+									  <label class="form-check-label" for="vnd">
+									    ventes non débutées
+									  </label>
+									</div>
+									<div class="form-check">
+									  <input class="form-check-input" disabled type="checkbox" name="vente" value="vt" id="vt">
+									  <label class="form-check-label" for="vt">
+									    ventes terminées
+									  </label>
+									</div>							
+								</div>						 					
+		  					</div>
+		  				</div>
+					
+						<!--  -->					
+					</div>
+					<div class="col-6 d-flex justify-content-center align-items-center">
+						<button class="btn btn-info" type="submit" >Rechercher</button>
+					</div>
+				</div>
+			</form>
+			<div class="row mt-5">
+				<div class="col" th:each="article : ${article}" >
+				
+					<div class="card"  >
+					  <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+					  <div class="card-body">
+					    <h5 class="card-title" th:text="${article.nomArticle}" >Card title</h5>
+					    <p class="card-text" th:text="${article.description}">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			            <p th:text="'Prix : '+${article.miseAPrix}">Prix</p>
+			            <p th:text="'Fin de l\'enchère : '+${article.dateFinEncheres}">Fin de l'enchère</p>
+			            <p th:text="'Vendeur : '+${article.vendeur.pseudo}">Vendeur</p>
+				       
+					    <a th:href="@{'/details/' + ${article.noArticle}}" class="btn btn-primary">Détails</a>
+					  </div>
+					</div>	
+				</div>
+			</div>
 
 
-
-                <div class="row row-cols-1 row-cols-md-4 g-4">
-                    <!-- Cards -->
-                    <!-- You can add your card elements here -->
-                </div>
-
-            </div>
-            
-            <div class="row mt-4 row-cols-1 row-cols-md-4 g-4">
-                <div class="col">
-                    <div class="card text-bg-primary">
-                    <img src="/assets/images/PC-Portable-Gaming.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Pc Portable Gaming - 3 écrans</h5>
-                            <p class="card-text">Prix : 1350 points</p>
-                            <p class="card-text">Fin de l'enchère : 22/06/2024</p>
-                            <p class="card-text">Vendeur : Fake Asus</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card text-bg-primary">
-                    <img src="/assets/images/bouclier-de-brennus.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Bouclier de Brennus</h5>
-                            <p class="card-text">Prix : 15 350 points</p>
-                            <p class="card-text">Fin de l'enchère : 01/04/2024</p>
-                            <p class="card-text">Vendeur : Cats Eyes</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card text-bg-primary">
-                    <img src="/assets/images/pop_pikachu.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Funko Pop - Pika vénère</h5>
-                            <p class="card-text">Prix : 350 points</p>
-                            <p class="card-text">Fin de l'enchère : 10/05/2024</p>
-                            <p class="card-text">Vendeur : La Team Rocket</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card text-bg-primary">
-                    <img src="/assets/images/table-bois-salle-a-manger-hemisphere-sud.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Table salle à manger en bois véritable</h5>
-                            <p class="card-text">Prix : 2 350 points</p>
-                            <p class="card-text">Fin de l'enchère : 18/03/2024</p>
-                            <p class="card-text">Vendeur : Rintintin</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+                
         </main>
 
     </div>

@@ -19,6 +19,12 @@ label{
 	margin-bottom:2px;
 }
 
+.retrait input{
+	height:40px;
+	width: 650px;
+	
+}
+
 .button{
 	text-align: center;
 	margin: 40px;

@@ -16,6 +16,9 @@ public interface ArticleService {
 	Optional<Article> getArticleById(Integer noArticle);
 
 
+	List<Article> search(String query, int category, String type);
+
+
 	
 
 }

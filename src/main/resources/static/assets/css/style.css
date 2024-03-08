@@ -26,3 +26,33 @@
 	color: red;
 }
 
+.error{
+	color: red;
+}
+.header-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+.header-title h1 {
+    flex-grow: 1; /* Permet au titre de s'étendre et de centrer le texte */
+    text-align: center; /* Centre le texte dans le titre */
+}
+    
+.logo-image {
+		justify-content: start;
+        width: 120px; /* Ajustez la largeur selon vos besoins */
+        height: auto; /* Pour maintenir les proportions de l'image */
+        margin-right: 0px; /* Ajoutez une marge à droite pour séparer l'image du texte */
+    }
+    
+  .navbar {
+      justify-content: space-between;
+  }
+
+
+h1{
+	text-align: center;	
+}
+

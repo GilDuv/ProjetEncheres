@@ -6,10 +6,14 @@ import java.util.Objects;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class Article {
 
 	private Integer noArticle;
+	@NotBlank
 	private String nomArticle;
+	@NotBlank
 	private String description;
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private Date dateDebutEncheres;

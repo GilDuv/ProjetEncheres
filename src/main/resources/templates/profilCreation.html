@@ -9,74 +9,72 @@
 </head>
 <body>
     <div class="container-fluid">
+		 <div th:replace="~{fragment/fragment-entete :: frag-entete}"></div>
 <!-- Header -->
         <header>
-            <div class="header-title text-center">Eni - Enchères</div>
         </header>
 
 <!-- Formulaire création de profil -->
     <div class="container">
         <h1 class="text-center mt-5">Création du Profil</h1>
-			 
-        <form action="/creation" method="POST" th:object="${utilisateurs}" class="row g-3 needs-validation" novalidate>
+		
+
+	
+        <form action="/creation" method="POST" th:object="${utilisateur}" class="row g-3 needs-validation" novalidate>
             <div class="col-md-6">
                 <label for="validationCustom01" class="form-label">Pseudo :</label>
                 <input type="text" class="form-control" id="validationCustom01" th:field="*{pseudo}">
-	            <div th:replace="~{fragment/fragment-error :: frag-error('pseudo')}"></div>
-	            <div th:if="${errorMessagePseudo}" class="error-message">
-   					 <p th:text="${errorMessagePseudo}"></p>
-				</div>
+	            
             </div>
+		<div class="error" th:replace="~{fragment/fragment-error :: frag-error('pseudo')}"></div>
             
             <div class="col-md-6">
                 <label for="validationCustom02" class="form-label">Nom :</label>
                 <input type="text" class="form-control" id="validationCustom02" th:field="*{nom}" required>
-                <div th:replace="~{fragment/fragment-error :: frag-error('nom')}"></div>
+                <div class="error" th:replace="~{fragment/fragment-error :: frag-error('nom')}"></div>
             </div>
             
             <div class="col-md-6">
                 <label for="validationCustom03" class="form-label">Prénom :</label>
                 <input type="text" class="form-control" id="validationCustom03" th:field="*{prenom}" required>
-                <div th:replace="~{fragment/fragment-error :: frag-error('prenom')}"></div>
+                <div class="error" th:replace="~{fragment/fragment-error :: frag-error('prenom')}"></div>
             </div>
             
             <div class="col-md-6">
                 <label for="validationCustom04" class="form-label">Email :</label>
                 <input type="text" class="form-control" id="validationCustom04" th:field="*{email}" required>
-                <div th:replace="~{fragment/fragment-error :: frag-error('email')}"></div>
-                <div th:if="${errorMessageEmail}" class="error-message">
-   					 <p th:text="${errorMessageEmail}"></p>
-				</div>
+                <div class="error" th:replace="~{fragment/fragment-error :: frag-error('email')}"></div>
+                
             </div>
             
             <div class="col-md-6">
                 <label for="validationCustom05" class="form-label">Telephone :</label>
                 <input type="text" class="form-control" id="validationCustom05" th:field="*{telephone}" required>
-                <div th:replace="~{fragment/fragment-error :: frag-error('telephone')}"></div>
+                <div class="error" th:replace="~{fragment/fragment-error :: frag-error('telephone')}"></div>
             </div>
             
             <div class="col-md-6">
                 <label for="validationCustom06" class="form-label">Rue :</label>
                 <input type="text" class="form-control" id="validationCustom06" th:field="*{rue}" required>
-                <div th:replace="~{fragment/fragment-error :: frag-error('rue')}"></div>
+                <div class="error" th:replace="~{fragment/fragment-error :: frag-error('rue')}"></div>
             </div>
             
             <div class="col-md-6">
                 <label for="validationCustom07" class="form-label">Code Postal :</label>
                 <input type="text" class="form-control" id="validationCustom07" th:field="*{codePostal}" required>
-                <div th:replace="~{fragment/fragment-error :: frag-error('codePostal')}"></div>
+                <div class="error" th:replace="~{fragment/fragment-error :: frag-error('codePostal')}"></div>
             </div>
             
             <div class="col-md-6">
                 <label for="validationCustom08" class="form-label">Ville :</label>
                 <input type="text" class="form-control" id="validationCustom08" th:field="*{ville}" required>
-                <div th:replace="~{fragment/fragment-error :: frag-error('ville')}"></div>
+                <div class="error" th:replace="~{fragment/fragment-error :: frag-error('ville')}"></div>
             </div>
             
             <div class="col-md-6">
                 <label for="validationCustom09" class="form-label">Mot de passe :</label>
                 <input type="text" class="form-control" id="validationCustom09" th:field="*{motDePasse}" required>
-                <div th:replace="~{fragment/fragment-error :: frag-error('motDePasse')}"></div>
+                <div class="error" th:replace="~{fragment/fragment-error :: frag-error('motDePasse')}"></div>
             </div>
             
             <div class="col-md-6">
@@ -87,6 +85,9 @@
                 </div>
             </div>
 
+            <div th:if="${errorMessagePseudo}" class="error-message">
+   					 <p th:text="${errorMessagePseudo}"></p>
+		</div>	 
             <div class="col-12">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
@@ -98,11 +99,13 @@
                     </div>
                 </div>
             </div>
+            
+		
             <!-- Include CSRF token -->
 			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
             <div class="col-12">
                 <button class="btn btn-primary me-2" type="submit">Créer</button>
-                <button class="btn btn-secondary" type="button">Annuler</button>
+                <a th:href="@{/}" class="btn btn-secondary center-block">Annuler</a>
             </div>
         </form>
     </div>

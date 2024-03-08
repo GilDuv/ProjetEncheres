@@ -2,8 +2,11 @@ package fr.eni.projetEnchere.bo;
 
 import java.util.Date;
 
-public class Enchere {
+import org.springframework.format.annotation.DateTimeFormat;
 
+public class Enchere {
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private Date dateEnchere;
 	private Integer montant_enchere;
 	

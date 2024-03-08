@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.eni.projetEnchere.bll.UtilisateurService;
 import fr.eni.projetEnchere.bo.Utilisateur;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
@@ -29,14 +30,14 @@ public class ProfilController {
 
 	@GetMapping("/creation")
 	public String creationCompte(Model model) {
-		model.addAttribute("utilisateurs", new Utilisateur());
+		model.addAttribute("utilisateur", new Utilisateur());
 
 		return "profilCreation";
 	}
 
 	@PostMapping("/creation")
-	public String creationCompte(@Valid @ModelAttribute("utilisateurs") Utilisateur utilisateur,Model model,
-			BindingResult bindingResult) {
+	public String creationCompte(@Valid @ModelAttribute("utilisateur") Utilisateur utilisateur,
+			BindingResult bindingResult,Model model) {
 		
 		try {
 
@@ -48,8 +49,7 @@ public class ProfilController {
 				return "redirect:/";			
 			}
 		} catch (DataIntegrityViolationException e) {
-			model.addAttribute("errorMessagePseudo", "Le pseudo est déjà utilisé. Veuillez en choisir un autre.");
-			model.addAttribute("errorMessageEmail", "L'email est déjà utilisé. Veuillez en choisir un autre.");
+			model.addAttribute("errorMessagePseudo", "Le pseudo ou l'email est déjà utilisé. Veuillez en choisir un autre.");
             return "profilCreation";
 		}
 	}
@@ -79,8 +79,9 @@ public class ProfilController {
 	}
 	
 	@GetMapping("/supprimer")
-	public String supprimerUtilisateur(@RequestParam("noUtilisateur") Integer noUtilisateur) {
+	public String supprimerUtilisateur(@RequestParam("noUtilisateur") Integer noUtilisateur, HttpSession session) {
 		utilisateurService.supprimerUtilisateur(noUtilisateur);
+		session.invalidate();
 		return "redirect:/";
 	}
 	

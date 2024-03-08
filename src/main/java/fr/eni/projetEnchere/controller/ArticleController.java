@@ -1,5 +1,7 @@
 package fr.eni.projetEnchere.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +23,7 @@ import fr.eni.projetEnchere.bll.UtilisateurService;
 import fr.eni.projetEnchere.bo.Article;
 import fr.eni.projetEnchere.bo.Categorie;
 import fr.eni.projetEnchere.bo.Utilisateur;
+import jakarta.validation.Valid;
 
 @Controller
 @SessionAttributes({"categorieSession"})
@@ -48,8 +52,10 @@ public class ArticleController {
 		}
 		
 		@PostMapping("/vendre")
-		public String vendreArticleSubmit(@ModelAttribute(name="article") Article article, Utilisateur utilisateur,Model model) {
-			
+		public String vendreArticleSubmit(@Valid @ModelAttribute(name="article") Article article,BindingResult bindingResult, Utilisateur utilisateur,Model model) {
+			if(bindingResult.hasErrors()) {
+				return "articleVente";
+			}else {
 			// Obtenez l'utilisateur actuellement authentifié à partir de Spring Security
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			String username = authentication.getName();
@@ -74,10 +80,11 @@ public class ArticleController {
 			article.getVendeur().setVille(utilisateur.getVille());
 			article.getVendeur().setMotDePasse(utilisateur.getMotDePasse());
 			
+		        
 			this.articleService.creerArticle(article,utilisateur);
 			System.out.println(article);
 			return "redirect:/";
-			
+			}
 			
 		
 			

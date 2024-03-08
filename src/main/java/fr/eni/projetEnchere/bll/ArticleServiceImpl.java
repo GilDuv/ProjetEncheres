@@ -41,7 +41,10 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleRepository.creerArticle(article, utilisateur);
 	}
 
-
+	@Override
+	public List<Article> search(String query,int category,String type){
+		return articleRepository.search(query, category, type);
+	}
 
 
 

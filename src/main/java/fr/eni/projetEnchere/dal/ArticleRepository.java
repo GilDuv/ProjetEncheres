@@ -15,4 +15,6 @@ public interface ArticleRepository {
 
 	Optional<Article> findArticleById(Integer id);
 
+	List<Article> search(String query, Integer category, String type);
+
 }
