@@ -40,4 +40,5 @@ public class CategorieServiceImpl implements CategorieService {
 		throw new CategorieNotFoundRuntimeException();
 	}
 
+
 }

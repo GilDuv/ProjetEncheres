@@ -35,7 +35,6 @@ public class Utilisateur implements UserDetails {
 	private String prenom;
 	
 	@Email
-	//@Pattern(regexp = "\\w+@campus-eni.fr")
 	//@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
 	private String email;
 	
