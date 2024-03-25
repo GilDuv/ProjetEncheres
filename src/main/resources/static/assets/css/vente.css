@@ -1,0 +1,32 @@
+@charset "UTF-8";
+form{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	
+}
+
+
+legend{
+	text-align: center;
+	margin-top: 40px;
+}
+
+label{
+	margin-top: 10px;
+	margin-bottom:2px;
+}
+
+.retrait input{
+	height:40px;
+	width: 650px;
+	
+}
+
+.button{
+	text-align: center;
+	margin: 40px;
+}
+
